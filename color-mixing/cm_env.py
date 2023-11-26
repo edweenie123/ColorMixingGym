@@ -1,9 +1,9 @@
-import gym
-from gym import spaces
+import gymnasium as gym
+from gymnasium import spaces
 import numpy as np
 
-from stable_baselines3 import DDPG
-from stable_baselines3.common.noise import NormalActionNoise
+# from stable_baselines3 import DDPG
+# from stable_baselines3.common.noise import NormalActionNoise
 
 from typing import Tuple, Optional, List
 
@@ -57,61 +57,72 @@ class Paint:
         # Return the new paint and the updated current paint
         return new_paint, Paint(self.color, self.amount)
 
-
 class ColorMixingEnv(gym.Env):
-    def __init__(self, available_paints: List[Paint], target_color: Tuple[int, int, int], max_steps: int = 100):
-        self.available_paints = available_paints
-        self.target_paint = Paint(target_color, 0)  # Target color with 0 amount
-        self.current_paint = Paint((255, 255, 255), 0)  # Starting with no paint
+    def __init__(self, beakers: List[Paint], target_color: Tuple[int, int, int], target_amount: float, max_steps: int = 100):
+        self.beakers = beakers
+        
+        # ~specify both target color AND target amount
+        self.target_paint = Paint(target_color, target_amount)
         self.max_steps = max_steps
         self.step_count = 0
 
-        # Define action and observation spaces
-        num_paints = len(available_paints)
-        self.action_space = spaces.Tuple((spaces.Discrete(num_paints), spaces.Box(low=0, high=1, shape=(1,), dtype=np.float32)))
-        self.observation_space = spaces.Box(low=0, high=255, shape=(3 + num_paints,), dtype=np.float32)
+        num_beakers = len(beakers)
+        self.action_space = spaces.Tuple((
+            spaces.Discrete(num_beakers),  # From beaker (index)
+            spaces.Discrete(num_beakers),  # To beaker (index)
+            spaces.Box(low=0, high=1, shape=(1,), dtype=np.float32)  # Amount ratio
+        ))
+        self.observation_space = spaces.Box(low=0, high=255, shape=(3 * num_beakers + num_beakers,), dtype=np.float32)
 
     def reset(self) -> np.ndarray:
-        self.current_paint = Paint((255, 255, 255), 0)
-        self.remaining_paints = [Paint(paint.color, paint.amount) for paint in self.available_paints]
+        self.beakers = [Paint(paint.color, paint.amount) for paint in self.beakers]
         self.step_count = 0
         return self._get_observation()
 
-    def step(self, action: Tuple[int, float]) -> Tuple[np.ndarray, float, bool, dict]:
-        paint_index, amount_ratio = action
-        selected_paint = self.remaining_paints[paint_index]
+    def step(self, action: Tuple[int, int, float]) -> Tuple[np.ndarray, float, bool, dict]:
+        # TODO: need to add stochasticity 
 
-        # TODO: need to add noise => add some stochasticity to amount
-        # Calculate the actual amount to mix based on the ratio
-        amount_to_mix = amount_ratio * selected_paint.amount
+        from_beaker_index, to_beaker_index, amount_ratio = action
+        from_beaker = self.beakers[from_beaker_index]
+        to_beaker = self.beakers[to_beaker_index]
 
-        # Mix the selected paint with the current color
-        paint_to_mix, _ = selected_paint.split(amount_to_mix)
-        self.current_paint = self.current_paint.mix_with(paint_to_mix)
+        amount_to_transfer = amount_ratio * from_beaker.amount
+        paint_to_transfer, _ = from_beaker.split(amount_to_transfer)
+        mixed_paint = to_beaker.mix_with(paint_to_transfer)
+        self.beakers[to_beaker_index] = mixed_paint
 
-        # Update the environment for the next step
         self.step_count += 1
         done = self.step_count >= self.max_steps
         reward = self._calculate_reward()
         return self._get_observation(), reward, done, {}
 
     def _calculate_reward(self) -> float:
-        """
-        Use negative Euclidean distance
-        """
-        distance = np.linalg.norm(np.array(self.current_paint.color) - np.array(self.target_paint.color))
-        return -distance
+        # ~ this is a very myopic reward...
+        # among all the beakers, we choose the one with the lowest "cost"
+        # cost = color difference + amount difference 
+        # color differience is use Euclidiean distance in RGB space
+
+        best_distance = float('inf')
+        for beaker in self.beakers:
+            color_distance = np.linalg.norm(np.array(beaker.color) - np.array(self.target_paint.color))
+            amount_distance = abs(beaker.amount - self.target_paint.amount)
+            total_distance = color_distance + amount_distance
+            if total_distance < best_distance:
+                best_distance = total_distance
+        return -best_distance
 
     def _get_observation(self) -> np.ndarray:
-        remaining_amounts = [paint.amount for paint in self.remaining_paints]
-        return np.concatenate([np.array(self.current_paint.color), remaining_amounts])
+        colors = [np.array(beaker.color) for beaker in self.beakers]
+        amounts = [beaker.amount for beaker in self.beakers]
+        return np.concatenate(colors + amounts)
 
-# Example setup
-available_paints = [
+beakers = [
     Paint((255, 0, 0), 100),
     Paint((0, 255, 0), 100),
     Paint((0, 0, 255), 100)
 ]
 
-target_color = [128, 128, 0]  # Example target color (olive green)
-# env = ColorMixingEnv(available_paints, target_color)
+target_color = (128, 128, 0)  # Example target color (olive green)
+target_amount = 150  # Example target amount
+
+env = ColorMixingEnv(beakers, target_color, target_amount)
