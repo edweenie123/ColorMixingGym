@@ -2,6 +2,9 @@ import gymnasium as gym
 from gymnasium import spaces
 import numpy as np
 
+from stable_baselines3 import PPO
+from stable_baselines3.common.env_util import make_vec_env
+
 # from stable_baselines3 import DDPG
 # from stable_baselines3.common.noise import NormalActionNoise
 
@@ -32,8 +35,8 @@ class Paint:
 
     def mix_with(self, other: 'Paint') -> 'Paint':
         mixed_amount = self.amount + other.amount
-        mixed_color = SubtractiveModel.subtractive_mix_colors(self, other)
-        return Paint(mixed_color.rgb, mixed_amount)
+        mixed_color = SubtractiveModel.mix_colors(self, other)
+        return Paint(mixed_color, mixed_amount)
 
     def subtract_amount(self, amount: float) -> None:
         self.amount = max(self.amount - amount, 0)
@@ -67,17 +70,25 @@ class ColorMixingEnv(gym.Env):
         self.step_count = 0
 
         num_beakers = len(beakers)
-        self.action_space = spaces.Tuple((
-            spaces.Discrete(num_beakers),  # From beaker (index)
-            spaces.Discrete(num_beakers),  # To beaker (index)
-            spaces.Box(low=0, high=1, shape=(1,), dtype=np.float32)  # Amount ratio
-        ))
-        self.observation_space = spaces.Box(low=0, high=255, shape=(3 * num_beakers + num_beakers,), dtype=np.float32)
+        self.action_space = spaces.MultiDiscrete([
+            num_beakers,    # From beaker (index)
+            num_beakers,    # To beaker (index)
+            100             # 100 possible transfer ratios
+        ])  
+        self.observation_space = spaces.Box(
+            low=0, high=255, 
+            shape=(num_beakers, 4), 
+            dtype=np.float32
+        )
 
-    def reset(self) -> np.ndarray:
+    def reset(self, **kwargs) -> np.ndarray:
+        # ~ should reset generate a random new state?
+        # Reset logic
         self.beakers = [Paint(paint.color, paint.amount) for paint in self.beakers]
         self.step_count = 0
-        return self._get_observation()
+        
+        # Return the initial observation
+        return self._get_observation(), {}
 
     def step(self, action: Tuple[int, int, float]) -> Tuple[np.ndarray, float, bool, dict]:
         # TODO: need to add stochasticity 
@@ -86,6 +97,7 @@ class ColorMixingEnv(gym.Env):
         from_beaker = self.beakers[from_beaker_index]
         to_beaker = self.beakers[to_beaker_index]
 
+        amount_ratio /= 100.0  # Convert to ratio
         amount_to_transfer = amount_ratio * from_beaker.amount
         paint_to_transfer, _ = from_beaker.split(amount_to_transfer)
         mixed_paint = to_beaker.mix_with(paint_to_transfer)
@@ -94,7 +106,8 @@ class ColorMixingEnv(gym.Env):
         self.step_count += 1
         done = self.step_count >= self.max_steps
         reward = self._calculate_reward()
-        return self._get_observation(), reward, done, {}
+        truncated = False # ~ don't know what the set this
+        return self._get_observation(), reward, done, truncated, {}
 
     def _calculate_reward(self) -> float:
         # ~ this is a very myopic reward...
@@ -112,17 +125,32 @@ class ColorMixingEnv(gym.Env):
         return -best_distance
 
     def _get_observation(self) -> np.ndarray:
-        colors = [np.array(beaker.color) for beaker in self.beakers]
-        amounts = [beaker.amount for beaker in self.beakers]
-        return np.concatenate(colors + amounts)
+        colors = np.array([np.array(beaker.color) for beaker in self.beakers])  # 2D array of shape (num_beakers, 3)
+        amounts = np.array([[beaker.amount] for beaker in self.beakers])  # 2D array of shape (num_beakers, 1)
+        # print('colors', colors)
+        # print('amounts', amounts)
+        # print(np.concatenate([colors, amounts], axis=1))
+        return np.concatenate([colors, amounts], axis=1)  # Concatenate along columns
 
-beakers = [
-    Paint((255, 0, 0), 100),
-    Paint((0, 255, 0), 100),
-    Paint((0, 0, 255), 100)
-]
+# Create the environment
+env = ColorMixingEnv(
+    beakers=[
+        Paint((255, 0, 0), 100),
+        Paint((0, 255, 0), 100),
+        Paint((0, 0, 255), 100)
+    ],
+    target_color=(128, 128, 0),  # Olive green
+    target_amount=150
+)
 
-target_color = (128, 128, 0)  # Example target color (olive green)
-target_amount = 150  # Example target amount
+# Wrap it for vectorized environments
+vec_env = make_vec_env(lambda: env, n_envs=1)
 
-env = ColorMixingEnv(beakers, target_color, target_amount)
+# Instantiate the agent
+model = PPO("MlpPolicy", vec_env, verbose=1)
+
+# Train the agent
+model.learn(total_timesteps=10000)
+
+# Save the model
+model.save("color_mixing_ppo_agent")
