@@ -44,15 +44,18 @@ class Paint:
     def subtract_amount(self, amount: float) -> None:
         self.amount = max(self.amount - amount, 0)
 
-    def split(self, split_amount: float) -> Tuple['Paint', Optional['Paint']]:
+    def split(self, split_amount: int) -> 'Paint':
         """
         Split a portion of the paint into a new Paint object.
         """
-        if split_amount <= 0:
-            return Paint(self.color, 0), None  # No paint to split
+        assert(split_amount >= 0)
+        assert(split_amount <= self.amount)
+        # if split_amount <= 0:
+        #     return Paint(self.color, 0)  # No paint to split
 
-        if split_amount >= self.amount:
-            return Paint(self.color, self.amount), None  # Split all paint
+        # if split_amount > self.amount:
+        #     self.amount = 0
+        #     return Paint(self.color, self.amount)  # Split all paint
 
         # Create new Paint object with the split amount
         new_paint = Paint(self.color, split_amount)
@@ -61,7 +64,7 @@ class Paint:
         self.subtract_amount(split_amount)
 
         # Return the new paint and the updated current paint
-        return new_paint, Paint(self.color, self.amount)
+        return new_paint
 
 class ColorMixingEnv(gym.Env):
     def __init__(self, num_beakers, max_steps: int = 10):
@@ -78,7 +81,7 @@ class ColorMixingEnv(gym.Env):
         self.action_space = spaces.MultiDiscrete([
             num_beakers,    # From beaker (index)
             num_beakers,    # To beaker (index)
-            100,             # 100 possible transfer ratios
+            100,             # 100 possible transfer amounts
             2               # Binary action for 'done'
         ])  
         self.observation_space = spaces.Box(
@@ -123,7 +126,7 @@ class ColorMixingEnv(gym.Env):
 
         self.step_count = 0
         self.initial_score = self.calculate_score()
-        self.done = False
+        self.previous_action = None
 
         
         # Return the initial observation
@@ -131,10 +134,9 @@ class ColorMixingEnv(gym.Env):
 
     def step(self, action: Tuple[int, int, int, int]) -> Tuple[np.ndarray, float, bool, dict]:
         # TODO: need to add stochasticity 
-        from_beaker_index, to_beaker_index, amount_ratio, done_action = action
+        from_beaker_index, to_beaker_index, amount, done_action = action
 
-        if done_action:
-            self.done = True
+        self.previous_action = (from_beaker_index, to_beaker_index, amount, done_action)
         
         # if done_action == 1:
         #     done = True
@@ -144,9 +146,10 @@ class ColorMixingEnv(gym.Env):
         from_beaker = self.beakers[from_beaker_index]
         to_beaker = self.beakers[to_beaker_index]
 
-        amount_ratio /= 100.0  # Convert to ratio
-        amount_to_transfer = amount_ratio * from_beaker.amount
-        paint_to_transfer, _ = from_beaker.split(amount_to_transfer)
+        amount_to_transfer = min(from_beaker.amount, amount)
+
+        paint_to_transfer = from_beaker.split(amount_to_transfer)
+
         mixed_paint = to_beaker.mix_with(paint_to_transfer)
         self.beakers[to_beaker_index] = mixed_paint
 
@@ -260,7 +263,7 @@ class ColorMixingEnv(gym.Env):
 
         # Reset other necessary environment variables
         self.step_count = 0
-        self.done = False
+        self.previous_action = None
 
         # Return the initial observation
         return self._get_observation()
@@ -296,6 +299,8 @@ class ColorMixingEnv(gym.Env):
         
         # Font for labels
         font = pygame.font.SysFont(None, 24)
+        amount_font = pygame.font.SysFont(None, 20)  # Font for displaying the amount
+
 
         # Draw each beaker and label
         for i, beaker in enumerate(self.beakers):
@@ -311,6 +316,10 @@ class ColorMixingEnv(gym.Env):
             # Add label
             label = font.render(str(i), True, (0, 0, 0))
             screen.blit(label, (x_position + beaker_width // 2 - label.get_width() // 2, screen_height - y_pad + 5))
+            
+            # Add label for beaker amount
+            amount_label = amount_font.render(f"{beaker.amount:.0f}", True, (0, 0, 0))
+            screen.blit(amount_label, (x_position + beaker_width // 2 - amount_label.get_width() // 2, screen_height - y_pad - beaker_height - 20))
 
         # Draw the target beaker (further to the right)
         target_x_position = start_x + len(self.beakers) * total_width + target_offset
@@ -321,12 +330,34 @@ class ColorMixingEnv(gym.Env):
         # Add text under the target beaker
         text = font.render('Target', True, (0, 0, 0))
         screen.blit(text, (target_x_position + beaker_width // 2 - text.get_width() // 2, screen_height - y_pad + 5))
+        
+        # Add label for target beaker amount
+        target_amount_label = amount_font.render(f"{self.target_paint.amount:.0f}", True, (0, 0, 0))
+        screen.blit(target_amount_label, (target_x_position + beaker_width // 2 - target_amount_label.get_width() // 2, screen_height - y_pad - beaker_height - 20))
 
-        # Check if done flag is set and display "Done" text
-        if self.done:
-            done_font = pygame.font.SysFont(None, 48)  # Larger font for "Done" text
-            done_text = done_font.render("Done", True, (0, 0, 0))
-            screen.blit(done_text, (screen_width // 2 - done_text.get_width() // 2, 10))  # Top center position
+
+        # visualize previous action
+        if self.previous_action is not None:
+            from_idx, to_idx, amount, done_action = self.previous_action
+
+            if done_action:
+                done_font = pygame.font.SysFont(None, 48)  # Larger font for "Done" text
+                done_text = done_font.render("Done", True, (0, 0, 0))
+                screen.blit(done_text, (screen_width // 2 - done_text.get_width() // 2, 10))  # Top center position
+            
+            # Calculate positions for the start and end of the arrow
+            from_x = start_x + from_idx * total_width + beaker_width / 2
+            to_x = start_x + to_idx * total_width + beaker_width / 2
+            y = screen_height - y_pad - beaker_height / 2 - 100
+
+            # Draw the arrow
+            pygame.draw.line(screen, (0, 0, 0), (from_x, y), (to_x, y), 3)
+            pygame.draw.polygon(screen, (0, 0, 0), [(to_x, y), (to_x - 10, y - 5), (to_x - 10, y + 5)])
+
+            # Add label for the transfer amount
+            transfer_label = amount_font.render(f"{amount:.0f}", True, (0, 0, 0))
+            mid_x = (from_x + to_x) / 2
+            screen.blit(transfer_label, (mid_x - transfer_label.get_width() / 2, y - 20))
 
         # Update the display
         pygame.display.flip()

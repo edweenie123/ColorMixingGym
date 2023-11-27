@@ -5,16 +5,7 @@ import os
 import argparse
 
 def train():
-    env = ColorMixingEnv(
-        beakers=[
-            Paint((255, 0, 0), 100),
-            Paint((0, 255, 0), 100),
-            Paint((0, 0, 255), 100),
-            Paint((0, 0, 0), 0) # empty beaker
-        ],
-        target_color=(128, 128, 0),  # Olive green
-        target_amount=150
-    )
+    env = ColorMixingEnv(4)
 
     # Wrap it for vectorized environments
     vec_env = make_vec_env(lambda: env, n_envs=1)
@@ -23,35 +14,35 @@ def train():
     model = PPO("MlpPolicy", vec_env, verbose=1)
 
     # Train the agent
-    model.learn(total_timesteps=15000)
+    model.learn(total_timesteps=100000)
 
     # Save the model
     model.save("color_mixing_ppo_agent")
 
 def test():
     env = ColorMixingEnv(4)
+    model = PPO.load("color_mixing_ppo_agent100000.zip")
 
     # model = PPO.load("color_mixing_ppo_agent.zip")
 
-    # num_episodes = 5  # You can adjust this number
-    # for episode in range(num_episodes):
-    #     obs, _ = env.reset()
-    #     print('initial state', obs)
-    #     env.render()  # Render the environment at each step
-    #     done = False
-    #     while not done:
-    #         action, _states = model.predict(obs, deterministic=True)
-    #         obs, reward, done, truncated, info = env.step(action)
-    #         print(f"Step: {env.step_count}, Action: {action}, Reward: {reward}")
-    #         env.render()  # Render the environment at each step
+    num_episodes = 5  # You can adjust this number
+    for episode in range(num_episodes):
+        obs, _ = env.reset()
+        print('initial state', obs)
+        env.render()  # Render the environment at each step
+        done = False
+        while not done:
+            action, _states = model.predict(obs, deterministic=True)
+            obs, reward, done, truncated, info = env.step(action)
+            print(f"Step: {env.step_count}, Action: {action}, Reward: {reward}")
+            env.render()  # Render the environment at each step
         
-    #     # Close the rendering window at the end of each episode (if applicable)
-    #     if hasattr(env, 'close'):
-    #         env.close()
+        # Close the rendering window at the end of each episode (if applicable)
+        if hasattr(env, 'close'):
+            env.close()
 
     # obs = env.load_state_from_file('tests/teal.txt')
 
-    model = PPO.load("color_mixing_ppo_agent.zip")
 
     for entry in os.listdir('tests/'):
         # Construct the full path
