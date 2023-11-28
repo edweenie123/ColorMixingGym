@@ -67,7 +67,7 @@ class Paint:
         return new_paint
 
 class ColorMixingEnv(gym.Env):
-    def __init__(self, num_beakers, max_steps: int = 10):
+    def __init__(self, num_beakers, max_steps: int = 10, noise_level=0):
 
         # randomly initialize paints for beakrs  
         self.max_steps = max_steps
@@ -91,6 +91,8 @@ class ColorMixingEnv(gym.Env):
         )
 
         self.initial_score = self.calculate_score()  
+        
+        self.noise_level = noise_level
 
     def reset(self, **kwargs) -> np.ndarray:
         # ~ should reset generate a random new state?
@@ -121,7 +123,7 @@ class ColorMixingEnv(gym.Env):
 
         # Randomize the target color and amount
         rand_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        rand_amount = random.randint(40, 150)  # Set suitable min and max amounts
+        rand_amount = random.randint(40, 150) # Set suitable min and max amounts
         self.target_paint = Paint(rand_color, rand_amount)
 
         self.step_count = 0
@@ -137,17 +139,16 @@ class ColorMixingEnv(gym.Env):
         from_beaker_index, to_beaker_index, amount, done_action = action
 
         self.previous_action = (from_beaker_index, to_beaker_index, amount, done_action)
-        
-        # if done_action == 1:
-        #     done = True
-        #     reward = self._calculate_reward()  # Calculate final reward
-        #     return self._get_observation(), reward, done, False, {}
+
+        # Define the noise level as a percentage of the amount
+        noise = np.random.normal(0, self.noise_level * amount)
+
 
         from_beaker = self.beakers[from_beaker_index]
         to_beaker = self.beakers[to_beaker_index]
 
-        amount_to_transfer = min(from_beaker.amount, amount)
-
+        # Apply noise to the amount to transfer
+        amount_to_transfer = min(from_beaker.amount, max(amount + noise, 0)) 
         paint_to_transfer = from_beaker.split(amount_to_transfer)
 
         mixed_paint = to_beaker.mix_with(paint_to_transfer)
@@ -186,23 +187,6 @@ class ColorMixingEnv(gym.Env):
         # Apply weights to color and amount distances
         total_distance = color_weight * color_distance + amount_weight * amount_distance
         
-
-        # best_distance = float('inf')
-        # for beaker in self.beakers:
-        #     # beaker = self.beakers[-1]
-        #     # Normalize the color distance
-        #     # print(type(beaker.color), type(self.target_paint.color))
-        #     color_distance = np.linalg.norm(np.array(beaker.color) - np.array(self.target_paint.color)) / max_color_distance
-            
-        #     # Normalize the amount distance
-        #     amount_distance = abs(beaker.amount - self.target_paint.amount) / max_amount_distance
-
-        #     # Apply weights to color and amount distances
-        #     total_distance = color_weight * color_distance + amount_weight * amount_distance
-
-        #     if total_distance < best_distance:
-        #         best_distance = total_distance
-
         # Invert the distance to make the reward positive
         score = (1 - total_distance) 
 

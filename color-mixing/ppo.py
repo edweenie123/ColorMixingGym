@@ -5,7 +5,7 @@ import os
 import argparse
 
 def train():
-    env = ColorMixingEnv(4)
+    env = ColorMixingEnv(4, noise_level=0.1)
 
     # Wrap it for vectorized environments
     vec_env = make_vec_env(lambda: env, n_envs=1)
@@ -19,11 +19,10 @@ def train():
     # Save the model
     model.save("color_mixing_ppo_agent")
 
-def test():
-    env = ColorMixingEnv(4)
-    model = PPO.load("color_mixing_ppo_agent100000.zip")
 
-    # model = PPO.load("color_mixing_ppo_agent.zip")
+def test():
+    env = ColorMixingEnv(4, noise_level=0)
+    model = PPO.load("color_mixing_ppo_agent100000.zip")
 
     num_episodes = 5  # You can adjust this number
     for episode in range(num_episodes):
@@ -40,9 +39,6 @@ def test():
         # Close the rendering window at the end of each episode (if applicable)
         if hasattr(env, 'close'):
             env.close()
-
-    # obs = env.load_state_from_file('tests/teal.txt')
-
 
     for entry in os.listdir('tests/'):
         # Construct the full path
@@ -62,7 +58,6 @@ def test():
 
             print(f"Step: {env.step_count}, Action: {action}, Reward: {reward}")
             env.render()  # Render the environment at each step
-
 
 
 def main():
