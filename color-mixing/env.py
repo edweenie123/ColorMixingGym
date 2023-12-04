@@ -50,12 +50,6 @@ class Paint:
         """
         assert(split_amount >= 0)
         assert(split_amount <= self.amount)
-        # if split_amount <= 0:
-        #     return Paint(self.color, 0)  # No paint to split
-
-        # if split_amount > self.amount:
-        #     self.amount = 0
-        #     return Paint(self.color, self.amount)  # Split all paint
 
         # Create new Paint object with the split amount
         new_paint = Paint(self.color, split_amount)
@@ -67,122 +61,154 @@ class Paint:
         return new_paint
 
 class ColorMixingEnv(gym.Env):
-    def __init__(self, num_beakers, max_steps: int = 10, noise_level=0):
+    def __init__(self, num_beakers: int, max_steps: int = 10, noise_level=0):
 
         # randomly initialize paints for beakrs  
         self.max_steps = max_steps
-        self.reset()
-        # self.beakers = beakers
-        # self.target_paint = Paint(target_color, target_amount)
-        # self.step_count = 0
-        # self.done = False
+        self.num_beakers = num_beakers
 
-        # num_beakers = len(beakers)
+        # initialize dummy state
+        self.beakers = []
+        for _ in range(self.num_beakers):
+            self.beakers.append(Paint((0, 0, 0), 0))
+        self.target_beaker = Paint((0, 0, 0), 0) 
+
         self.action_space = spaces.MultiDiscrete([
-            num_beakers,    # From beaker (index)
-            num_beakers,    # To beaker (index)
-            100,             # 100 possible transfer amounts
-            2               # Binary action for 'done'
+            num_beakers,      # From beaker (index)
+            num_beakers,      # To beaker (index)
+            100,              # 100 possible transfer amounts
+            2,                # Binary action for 'done'
+            num_beakers       # Beaker index for comparison (only relevant if 'done') 
         ])  
+
+        # obs space: tuples of the form (R, G, B, amt) for each beaker
         self.observation_space = spaces.Box(
             low=0, high=255, 
             shape=(num_beakers + 1, 4), 
             dtype=np.int64
         )
 
-        self.initial_score = self.calculate_score()  
-        
+        # self.initial_score = self.calculate_score()  
         self.noise_level = noise_level
+        self.reset()
 
     def reset(self, **kwargs) -> np.ndarray:
-        # ~ should reset generate a random new state?
-        # Reset logic
-        # self.beakers = [Paint(paint.color, paint.amount) for paint in self.beakers]
-
-        self.beakers=[
-            Paint((255, 0, 0), 100),
-            Paint((0, 255, 0), 100),
-            Paint((0, 0, 255), 100),
-            Paint((0, 0, 0), 0) # empty beaker
-        ]
         
-        # Randomize the contents of each beaker
-        # for beaker in self.beakers:
-        #     beaker.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        #     beaker.amount = random.randint(40, 120)  # max_amount is the maximum paint amount in a beaker
-
-        # self.beakers=[
-        #     Paint((255, 0, 0), 100),
-        #     Paint((0, 255, 0), 100),
-        #     Paint((0, 0, 255), 100),
-        #     Paint((0, 0, 0), 0) # empty beaker
-        # ]
-
-        # make last beaker empty 
-        self.beakers[-1].amount = 0
-
-        # Randomize the target color and amount
-        rand_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        rand_amount = random.randint(40, 150) # Set suitable min and max amounts
-        self.target_paint = Paint(rand_color, rand_amount)
+        self._randomize_state(mode=1)
 
         self.step_count = 0
-        self.initial_score = self.calculate_score()
-        self.previous_action = None
-
+        self.prev_action = None
         
         # Return the initial observation
         return self._get_observation(), {}
+    
+    def _randomize_state(self, mode=0):
+        """
+        Randomizes the state of the beakers based on the specified mode.
+
+        Parameters:
+        mode (int): Determines the randomization approach. Default is 0.
+
+        Modes:
+            0 - Constant Starting State:
+                - Initializes the first three beakers with 100 ml of red, green, and blue paint, respectively.
+                - The remaining beakers start empty.
+                - Randomizes the target beaker's color and amount.
+
+            1 - Fully Randomized State:
+                - Randomizes the color and amount of paint in all beakers.
+                - Randomizes the target beaker's color and amount.
+        """
+
+        if mode == 0:
+            beakers = [
+                Paint((255, 0, 0), 100),
+                Paint((0, 255, 0), 100),
+                Paint((0, 0, 255), 100),
+            ]
+
+            # set the rest to be empty beakers
+            for _ in range(self.num_beakers - 3):
+                beakers.append(Paint((0, 0, 0), 0))
+
+            self.beakers = beakers
+        elif mode == 1:
+            # Randomize the contents of each beaker
+            for beaker in self.beakers:
+                beaker.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+                beaker.amount = random.randint(40, 120)  # max_amount is the maximum paint amount in a beaker
+        else:
+            raise Exception('invalid randomization mode')
+        
+        # randomize the target color and amount
+        rand_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        rand_amount = random.randint(40, 150) # set suitable min and max amounts
+        self.target_beaker = Paint(rand_color, rand_amount)
 
     def step(self, action: Tuple[int, int, int, int]) -> Tuple[np.ndarray, float, bool, dict]:
-        # TODO: need to add stochasticity 
-        from_beaker_index, to_beaker_index, amount, done_action = action
+        from_idx, to_idx, amt, is_done, cmp_idx = action
 
-        self.previous_action = (from_beaker_index, to_beaker_index, amount, done_action)
+        # make std of noise proportional to noise_level and amt 
+        noise = np.random.normal(0, self.noise_level * amt)
 
-        # Define the noise level as a percentage of the amount
-        noise = np.random.normal(0, self.noise_level * amount)
+        from_beaker = self.beakers[from_idx]
+        to_beaker = self.beakers[to_idx]
 
-
-        from_beaker = self.beakers[from_beaker_index]
-        to_beaker = self.beakers[to_beaker_index]
-
-        # Apply noise to the amount to transfer
-        amount_to_transfer = min(from_beaker.amount, max(amount + noise, 0)) 
-        paint_to_transfer = from_beaker.split(amount_to_transfer)
+        # apply noise to the amount to transfer
+        noisy_amt = max(int(amt + noise), 0)
+        actual_amt = min(from_beaker.amount, noisy_amt) 
+        paint_to_transfer = from_beaker.split(actual_amt)
 
         mixed_paint = to_beaker.mix_with(paint_to_transfer)
-        self.beakers[to_beaker_index] = mixed_paint
+        self.beakers[to_idx] = mixed_paint
 
         self.step_count += 1
-        done = (self.step_count >= self.max_steps) or done_action
-        reward = self._calculate_reward(done=done)
-        
+        done = (self.step_count >= self.max_steps) or is_done
+        reward = self._calculate_reward(cmp_idx, done=done)
+
+        # store previous action for rendering 
+        self.prev_action = {
+            'from_idx' : from_idx, 
+            'to_idx' : to_idx, 
+            'desired_amt': amt, 
+            'actual_amt': actual_amt, 
+            'is_done': done,
+            'cmp_idx': cmp_idx 
+        }
+
         truncated = False # ~ don't know what the set this
         return self._get_observation(), reward, done, truncated, {}
     
-    def calculate_score(self) -> float:
-        # ~ this is a very myopic reward...
-        # among all the beakers, we choose the one with the lowest "cost"
-        # cost = color difference + amount difference 
-        # color differience is use Euclidiean distance in RGB space
+    def calculate_score(self, cmp_beaker_idx: int) -> float:
+        """
+        Calculates a score from 0 - 1 based on the similarity between the 
+        properties of a selected beaker and the target beaker.
+
+        The score is derived from the weighted sum of the Euclidean distance in 
+        RGB color space and the difference in paint amount, normalized and 
+        transformed by a weighting function.
+
+        Returns:
+        float: The calculated score, representing the similarity between the selected beaker
+        """
 
         max_color_distance = np.linalg.norm(np.array([255, 255, 255]))  # Maximum Euclidean distance in RGB space
-        max_amount_distance = 200  # Replace with your value
+        
+        # ! need to set this to max beaker capacity...
+        max_amount_distance = 200  
 
-        color_weight = 0.8  # Weight for color distance, e.g., 0.5
-        amount_weight = 0.2  # Weight for amount distance, e.g., 0.5
+        color_weight = 0.8  # weight for color distance
+        amount_weight = 0.2  # weight for amount distance
 
+        cmp_beaker = self.beakers[cmp_beaker_idx]
 
-        beaker = self.beakers[-1]
+        color_distance = np.linalg.norm(np.array(cmp_beaker.color) - np.array(self.target_beaker.color)) / max_color_distance
 
-        color_distance = np.linalg.norm(np.array(beaker.color) - np.array(self.target_paint.color)) / max_color_distance
-
-        if (beaker.amount == 0): # when amount is 0, color of paint is meaningless
+        if (cmp_beaker.amount == 0): # when amount is 0, color of paint is meaningless
             color_distance = 1
         
         # Normalize the amount distance
-        amount_distance = abs(beaker.amount - self.target_paint.amount) / max_amount_distance
+        amount_distance = abs(cmp_beaker.amount - self.target_beaker.amount) / max_amount_distance
 
         # Apply weights to color and amount distances
         total_distance = color_weight * color_distance + amount_weight * amount_distance
@@ -197,28 +223,21 @@ class ColorMixingEnv(gym.Env):
 
         return score 
     
-    def _calculate_reward(self, done=False) -> float:
-        if done:
-            current_score = self.calculate_score()
-            # improvement = current_score - self.initial_score
-            # reward = max(improvement, 0)  
-            return current_score
-
-        # Update the best heuristic score
-        # if current_score > self.best_heuristic_score:
-        #     self.best_heuristic_score = current_score
-        
+    def _calculate_reward(self, cmp_beaker_idx: int, done=False) -> float:
         step_penalty = 0.01
         reward = -step_penalty
+
+        if done:
+            reward += self.calculate_score(cmp_beaker_idx)
 
         return reward
 
     def _get_observation(self) -> np.ndarray:
         colors = [np.array(beaker.color) for beaker in self.beakers]
-        colors.append(np.array(self.target_paint.color))
+        colors.append(np.array(self.target_beaker.color))
         colors = np.array(colors)  # 2D array of shape (num_beakers, 3)
         amounts = [[beaker.amount] for beaker in self.beakers]
-        amounts.append([self.target_paint.amount])
+        amounts.append([self.target_beaker.amount])
         amounts = np.array(amounts)  # 2D array of shape (num_beakers, 1)
         # print('colors', colors)
         # print('amounts', amounts)
@@ -229,7 +248,7 @@ class ColorMixingEnv(gym.Env):
     def load_state_from_file(self, file_path):
         with open(file_path, 'r') as file:
             self.beakers = []
-            self.target_paint = None
+            self.target_beaker = None
 
             for line in file:
                 parts = line.strip().split()
@@ -243,27 +262,29 @@ class ColorMixingEnv(gym.Env):
                 if line_type == 'B':
                     self.beakers.append(Paint(color, amount))
                 elif line_type == 'T':
-                    self.target_paint = Paint(color, amount)
+                    self.target_beaker = Paint(color, amount)
 
         # Reset other necessary environment variables
         self.step_count = 0
-        self.previous_action = None
+        self.prev_action = None
 
         # Return the initial observation
         return self._get_observation()
 
     def render(self, mode='human'):
-        # Initialize Pygame if it hasn't been initialized
-        if not pygame.get_init():
-            pygame.init()
-
         # Define window dimensions and colors
         screen_width = 800
         screen_height = 400
         background_color = (255, 255, 255)  # White background
 
+        # Initialize Pygame if it hasn't been initialized
+        if not pygame.get_init():
+            pygame.init()
+            self.screen = pygame.display.set_mode((screen_width, screen_height))
+
+        screen = self.screen
+
         # Create Pygame screen
-        screen = pygame.display.set_mode((screen_width, screen_height))
         screen.fill(background_color)
 
         # Define beaker dimensions and positions
@@ -275,7 +296,6 @@ class ColorMixingEnv(gym.Env):
         beaker_border_width = 2  # Thickness of beaker border
         y_pad = 50  # Padding from the top of the screen
         target_offset = 30  # Additional space before the target beaker
-
 
         # Centering the beakers
         total_beakers_width = (len(self.beakers) + 1) * total_width  # Including target beaker
@@ -307,8 +327,8 @@ class ColorMixingEnv(gym.Env):
 
         # Draw the target beaker (further to the right)
         target_x_position = start_x + len(self.beakers) * total_width + target_offset
-        paint_height = self.target_paint.amount / beaker_capacity * beaker_height
-        pygame.draw.rect(screen, self.target_paint.color, (target_x_position, screen_height - y_pad - paint_height, beaker_width, paint_height))
+        paint_height = self.target_beaker.amount / beaker_capacity * beaker_height
+        pygame.draw.rect(screen, self.target_beaker.color, (target_x_position, screen_height - y_pad - paint_height, beaker_width, paint_height))
         pygame.draw.rect(screen, (0, 0, 0), (target_x_position, screen_height - y_pad - beaker_height, beaker_width, beaker_height), beaker_border_width)
 
         # Add text under the target beaker
@@ -316,19 +336,38 @@ class ColorMixingEnv(gym.Env):
         screen.blit(text, (target_x_position + beaker_width // 2 - text.get_width() // 2, screen_height - y_pad + 5))
         
         # Add label for target beaker amount
-        target_amount_label = amount_font.render(f"{self.target_paint.amount:.0f}", True, (0, 0, 0))
+        target_amount_label = amount_font.render(f"{self.target_beaker.amount:.0f}", True, (0, 0, 0))
         screen.blit(target_amount_label, (target_x_position + beaker_width // 2 - target_amount_label.get_width() // 2, screen_height - y_pad - beaker_height - 20))
 
 
         # visualize previous action
-        if self.previous_action is not None:
-            from_idx, to_idx, amount, done_action = self.previous_action
+        if self.prev_action is not None:
+            from_idx = self.prev_action['from_idx']
+            to_idx = self.prev_action['to_idx']
+            actual_amt = self.prev_action['actual_amt']
+            desired_amt = self.prev_action['desired_amt']
+            is_done = self.prev_action['is_done']
+            cmp_idx = self.prev_action['cmp_idx']
 
-            if done_action:
+            if is_done:
                 done_font = pygame.font.SysFont(None, 48)  # Larger font for "Done" text
                 done_text = done_font.render("Done", True, (0, 0, 0))
                 screen.blit(done_text, (screen_width // 2 - done_text.get_width() // 2, 10))  # Top center position
             
+            # # Calculate positions for the start and end of the arrow
+            # from_x = start_x + from_idx * total_width + beaker_width / 2
+            # to_x = start_x + to_idx * total_width + beaker_width / 2
+            # y = screen_height - y_pad - beaker_height / 2 - 100
+
+            # # Draw the arrow
+            # pygame.draw.line(screen, (0, 0, 0), (from_x, y), (to_x, y), 3)
+            # pygame.draw.polygon(screen, (0, 0, 0), [(to_x, y), (to_x - 10, y - 5), (to_x - 10, y + 5)])
+
+            # # Add label for the transfer amount
+            # transfer_label = amount_font.render(f"{amount:.0f}", True, (0, 0, 0))
+            # mid_x = (from_x + to_x) / 2
+            # screen.blit(transfer_label, (mid_x - transfer_label.get_width() / 2, y - 20))
+
             # Calculate positions for the start and end of the arrow
             from_x = start_x + from_idx * total_width + beaker_width / 2
             to_x = start_x + to_idx * total_width + beaker_width / 2
@@ -338,10 +377,12 @@ class ColorMixingEnv(gym.Env):
             pygame.draw.line(screen, (0, 0, 0), (from_x, y), (to_x, y), 3)
             pygame.draw.polygon(screen, (0, 0, 0), [(to_x, y), (to_x - 10, y - 5), (to_x - 10, y + 5)])
 
-            # Add label for the transfer amount
-            transfer_label = amount_font.render(f"{amount:.0f}", True, (0, 0, 0))
+            # Add label for the desired and actual transfer amounts
+            desired_label = amount_font.render(f"Desired: {desired_amt:.0f}", True, (0, 0, 0))
+            actual_label = amount_font.render(f"Actual: {actual_amt:.0f}", True, (0, 0, 0))
             mid_x = (from_x + to_x) / 2
-            screen.blit(transfer_label, (mid_x - transfer_label.get_width() / 2, y - 20))
+            screen.blit(desired_label, (mid_x - desired_label.get_width() / 2, y - 40))
+            screen.blit(actual_label, (mid_x - actual_label.get_width() / 2, y - 20))
 
         # Update the display
         pygame.display.flip()

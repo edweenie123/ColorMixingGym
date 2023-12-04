@@ -1,8 +1,33 @@
-from cm_env import ColorMixingEnv, Paint
+from env import ColorMixingEnv, Paint
 from stable_baselines3 import PPO
+from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.env_util import make_vec_env
 import os
+from stable_baselines3.common.logger import configure
 import argparse
+import pandas as pd
+import numpy as np
+
+# class CustomCallback(BaseCallback):
+#     def __init__(self, log_interval=2048, verbose=0):
+#         super(CustomCallback, self).__init__(verbose)
+#         self.log_interval = log_interval
+#         self.metrics = []
+
+#     def _on_step(self) -> bool:
+#         # Only log at intervals of `log_interval`
+#         if self.num_timesteps % self.log_interval == 0 or self.num_timesteps == 1:
+#             logger = self.model.logger
+#             # print(type(logger))
+#             latest_log = logger.get_log_dict()
+
+#             metrics = {
+#                 "total_timesteps": self.num_timesteps,
+#                 "ep_rew_mean": latest_log.get("rollout/ep_rew_mean", np.nan)  # Use np.nan for missing values
+#             }
+#             self.metrics.append(metrics)
+#         return True
+
 
 def train():
     env = ColorMixingEnv(4, noise_level=0.1)
@@ -13,19 +38,27 @@ def train():
     # Instantiate the agent
     model = PPO("MlpPolicy", vec_env, verbose=1)
 
+    # use this callback during training
+    # callback = CustomCallback()
     # Train the agent
+
+    new_logger = configure('logs', ["stdout", "csv"])
+    model.set_logger(new_logger)
     model.learn(total_timesteps=100000)
+    
+    # df = pd.DataFrame(callback.metrics)
+    # df.to_csv('metrics.csv', index=False)
 
     # Save the model
     model.save("color_mixing_ppo_agent")
 
 
 def test():
-    env = ColorMixingEnv(4, noise_level=0)
-    model = PPO.load("color_mixing_ppo_agent100000.zip")
+    env = ColorMixingEnv(4, noise_level=0.1)
+    model = PPO.load("color_mixing_ppo_agent.zip")
 
     num_episodes = 5  # You can adjust this number
-    for episode in range(num_episodes):
+    for _ in range(num_episodes):
         obs, _ = env.reset()
         print('initial state', obs)
         env.render()  # Render the environment at each step
@@ -82,7 +115,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-
-
-# Load the trained model
