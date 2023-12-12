@@ -138,6 +138,7 @@ class ColorMixingEnv(gym.Env):
                 (255, 255, 0)   # yellow
             ]
 
+
             beakers = []
 
             # apply noise to each primary color 
@@ -163,10 +164,15 @@ class ColorMixingEnv(gym.Env):
 
             self.beakers = beakers
         elif mode == 2:
+            # cmy = [
+            #     (0, 255, 255),  # cyan
+            #     (255, 0, 255),  # megenta
+            #     (255, 255, 0)   # yellow
+            # ]
             cmy = [
-                (0, 255, 255),  # cyan
-                (255, 0, 255),  # megenta
-                (255, 255, 0)   # yellow
+                (255, 0, 0),  # cyan
+                (0, 255, 0),  # megenta
+                (0, 0, 255)   # yellow
             ]
 
             beakers = []

@@ -30,20 +30,20 @@ import numpy as np
 
 
 def train():
-    env = ColorMixingEnv(4, noise_level=0.1)
+    env = ColorMixingEnv(5, noise_level=0.1)
 
     # Wrap it for vectorized environments
-    vec_env = make_vec_env(lambda: env, n_envs=1)
+    vec_env = make_vec_env(lambda: env, n_envs=10)
 
     # Instantiate the agent
-    model = PPO("MlpPolicy", vec_env, verbose=1)
+    model = PPO("MlpPolicy", vec_env, verbose=1, device='cuda')
 
     # use this callback during training
     # callback = CustomCallback()
     # Train the agent
 
-    new_logger = configure('logs', ["stdout", "csv"])
-    model.set_logger(new_logger)
+    # new_logger = configure('logs', ["stdout", "csv"])
+    # model.set_logger(new_logger)
     model.learn(total_timesteps=100000)
     
     # df = pd.DataFrame(callback.metrics)
@@ -54,7 +54,7 @@ def train():
 
 
 def test():
-    env = ColorMixingEnv(4, noise_level=0.1)
+    env = ColorMixingEnv(5, noise_level=0.1)
     model = PPO.load("color_mixing_ppo_agent.zip")
 
     num_episodes = 5  # You can adjust this number
@@ -73,24 +73,24 @@ def test():
         if hasattr(env, 'close'):
             env.close()
 
-    for entry in os.listdir('tests/'):
-        # Construct the full path
-        full_path = os.path.join('tests/', entry)
+    # for entry in os.listdir('tests/'):
+    #     # Construct the full path
+    #     full_path = os.path.join('tests/', entry)
 
-        # Check if it's a file and not a directory
-        if not os.path.isfile(full_path):
-            continue
+    #     # Check if it's a file and not a directory
+    #     if not os.path.isfile(full_path):
+    #         continue
 
-        obs = env.load_state_from_file(full_path)
-        print('initial state', obs)
-        env.render()  # Render the environment at each step
-        done = False
-        while not done:
-            action, _states = model.predict(obs, deterministic=True)
-            obs, reward, done, truncated, info = env.step(action)
+    #     obs = env.load_state_from_file(full_path)
+    #     print('initial state', obs)
+    #     env.render()  # Render the environment at each step
+    #     done = False
+    #     while not done:
+    #         action, _states = model.predict(obs, deterministic=True)
+    #         obs, reward, done, truncated, info = env.step(action)
 
-            print(f"Step: {env.step_count}, Action: {action}, Reward: {reward}")
-            env.render()  # Render the environment at each step
+    #         print(f"Step: {env.step_count}, Action: {action}, Reward: {reward}")
+    #         env.render()  # Render the environment at each step
 
 
 def main():
