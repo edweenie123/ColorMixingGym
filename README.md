@@ -1,8 +1,6 @@
-# LLM-planning-project
+# Color mixing gym
 
-### Color mixing experiment
-
-Create conda virtual environment with
+Create conda virtual environment and install required packages with
 
 ```bash
 conda create --name <env> --file requirements.txt
