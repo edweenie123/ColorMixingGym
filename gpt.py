@@ -1,6 +1,8 @@
-from openai import OpenAI
+# from openai import OpenAI
 from env import *
 import json
+from langchain.agents import load_tools, initialize_agent, AgentType
+from langchain.llms import OpenAI
 client = OpenAI()
 
 def get_env_text_repr(obs, prev_plan):
@@ -25,6 +27,7 @@ def get_env_text_repr(obs, prev_plan):
         # first step 
 
         query += """\n
+        
         Generate a numbered step by step plan in natural language to match the 
         target beaker as closely as possible (in both color and amount). 
         Some requirements in the plan: 
@@ -100,7 +103,6 @@ def test():
     planning your actions, as the proportions of colors you mix will 
     significantly affect the outcome.
 
-
     Given this description of the environment, your task is to generate an 
     action in a specific JSON format. Each action is a JSON object that 
     represents a move in the environment. The action should consist of the 
@@ -119,38 +121,56 @@ def test():
     After generating this plan, please output the first step in JSON according 
     to the given format. 
     """
-    
-    env = ColorMixingEnv(5, noise_level=0.1)
 
+    llm = OpenAI(
+        temperature=0.2
+        # model_kwargs={"system_prompt": system_prompt}
+    ) 
+                             
+    tools = load_tools(['llm-math'], llm=llm)
+    
+    agent = initialize_agent(
+        llm=llm,
+        tools=tools,
+        agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+        verbose=True
+    )
+    
+    # print(agent.agent.llm_chain.prompt.template)
+    # return
+
+    env = ColorMixingEnv(5, noise_level=0.1)
+    done = False
     # num_episodes = 5# You can adjust this number
     # for _ in range(num_episodes):
     obs, _ = env.reset()
     # print('Initial state:', obs)
-    messages = [{"role": "system", "content": system_prompt}]
+    # messages = [{"role": "system", "content": system_prompt}]
     # print(get_env_text_repr(obs))
     env.render()
-    done = False
 
     prev_plan = None
     while not done:
         # convert observation to textual representation
         obs_text = get_env_text_repr(obs, prev_plan)
         print(obs_text)
-        messages.append({"role": "user", "content": obs_text})
+        # messages.append({"role": "user", "content": obs_text})
 
         # Query LLM for action
-        response = client.chat.completions.create(
-            # model="gpt-3.5-turbo-1106",  
-            model="gpt-4",  
-            # response_format={"type" : "json_object"},
-            messages=messages
-        )
+        # response = client.chat.completions.create(
+        #     # model="gpt-3.5-turbo-1106",  
+        #     model="gpt-4",  
+        #     # response_format={"type" : "json_object"},
+        #     messages=messages
+        # )
+        
+        result = agent.run(obs_text)
 
         # Decode LLM response to action
-        response = response.choices[0].message.content
-        print(f'LLM response\n{response}')
-        action_json = extract_json_from_response(response)
-        prev_plan = extract_plan_from_response(response)
+        # response = response.choices[0].message.content
+        print(f'LLM response\n{result}')
+        action_json = extract_json_from_response(result)
+        prev_plan = extract_plan_from_response(result)
         
         from_idx = int(action_json['from_beaker'])
         to_idx = int(action_json['to_beaker'])
