@@ -2,31 +2,24 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from env import ColorMixingEnv
+from abc import ABC, abstractmethod
+
 import os
 import pandas as pd
 from prompts import *
 
-def get_env_text_repr(obs):
+def extract_section(response, section_name):
     """
-    Receives observation from environment (env state) and converts it
-    to a string representation
+    Extracts content sandwitched by
+    --- <section_name> START ---
+    --- <section_name> END ---
     """
-    beaker_descriptions = []
-    num_beakers = len(obs) - 1  # Excluding the target beaker
 
-    # Process each beaker
-    for idx in range(num_beakers):
-        beaker = obs[idx]
-        color_str = f"Color: RGB({beaker[0]}, {beaker[1]}, {beaker[2]})"
-        beaker_descriptions.append(f"Beaker {idx}: {color_str}, amount: {beaker[3]}ml")
-
-    # Process the target beaker
-    target_beaker = obs[-1]
-    target_color_str = f"RGB({target_beaker[0]}, {target_beaker[1]}, {target_beaker[2]})"
-    target_description = f"Target beaker: {target_color_str}, amount: {target_beaker[3]}ml"
-
-    text_repr = "\n".join(beaker_descriptions) + "\n" + target_description
-    return text_repr
+    assert f'--- {section_name} START ---' in response and f'--- {section_name} END ---' in response, "Section markers not found in the string"
+    # extract content
+    content = response.split(f'--- {section_name} START ---')[1].split(f'--- {section_name} END ---')[0]
+    
+    return content
 
 def extract_instructions(response):
     """
@@ -58,128 +51,110 @@ def extract_instructions(response):
 
     return instructions
 
-def extract_section(response, section_name):
-    """
-    Extracts content sandwitched by
-    --- <section_name> START ---
-    --- <section_name> END ---
-    """
 
-    assert f'--- {section_name} START ---' in response and f'--- {section_name} END ---' in response, "Section markers not found in the string"
-    # extract content
-    content = response.split(f'--- {section_name} START ---')[1].split(f'--- {section_name} END ---')[0]
-    
-    return content
+class LLMAgent(ABC):
+    @abstractmethod
+    def next_action(self, obs: str):
+        """Returns an action given the new observation"""
+        pass
 
-def execute_instructions(env : ColorMixingEnv, instructions, render=True):
-    """
-    returns trajectory
-    """
-    if render:
-        env.render()
-    
-    trajectory = ""
+    def end_episode_reflection(self):
+        pass
 
-    for instruction in instructions:
-        ins_type, args = instruction
-        ins_str = '{}({})'.format(ins_type, ', '.join(map(str, args)))
-        
-        if ins_type == 'POUR':
-            from_idx, to_idx, amt = args
-            env.step((from_idx, to_idx, amt, 0, 0))
+class UnreactivePlannerCritic(LLMAgent):
+    def __init__(self):
+        llm = ChatOpenAI(
+            temperature=0,
+            model_name='gpt-3.5-turbo-1106'
+            # model_name='gpt-4-1106-preview'
+        )
 
-            trajectory += f'\nState after action {ins_str}:\n'
-            trajectory += get_env_text_repr(env._get_observation()) + '\n'
+        self.planner = LLMChain(llm=llm, prompt=planner_template)
+        self.critic = LLMChain(llm=llm, prompt=critic_template)
+        self.inst_idx = 0 # instruction idx
+        self.instructions = None # instructions
+        # self.prev_plan = ''
+        # self.plan_reasoning = ''
+        self.feedback = ''
+        self.planner_response = None
+        self.critic_response = None
+        self.trajectory = None # collect the trajectory in memory
+        self.initial_state = None
+        self.plan_reasoning = '' # stores the current plan_reasoning
+        self.plan = '' # stores the current plan
+        self.trajectory = '' # collect the trajectory here
 
-        elif ins_type == 'DONE':
-            comp_idx, = args
-            env.step((0, 0, 0, 1, comp_idx))
+    def next_action(self, obs: str):
+        def find_next_execute():
+            inst = self.instructions[self.inst_idx]
+            self.inst_idx += 1
+
+            # collect the trajectory
+            if self.trajectory != '':
+                # add the newest observation
+                self.trajectory += obs + '\n'
             
-            trajectory += f'\nCompare beaker {comp_idx} with target beaker'
+            ins_type, args = inst
+            ins_str = '{}({})'.format(ins_type, ', '.join(map(str, args)))
+            if ins_type == 'POUR':
+                self.trajectory += f'\nState after action {ins_str}:\n'
+            elif ins_type == 'DONE':
+                comp_idx, = args
+                self.trajectory += f'\nCompare beaker {comp_idx} with target beaker'
 
-        if render:
-            env.render()
-    
-    return trajectory
+            return inst
+            
+        if self.instructions != None:
+            return find_next_execute()
 
-def evaluate_on_dir(dir_path, render=False):
-    env = ColorMixingEnv(
-        num_beakers=4
-    )
+        self.initial_state = obs 
+        # don't have plan yet, so need to generate it
+        print('Querying the planner...')
+        planner_response = self.planner.run(
+            state=obs,
+            prev_reasoning=self.plan_reasoning,
+            prev_plan=self.plan,
+            feedback=self.feedback
+        )
+        print(f'planner_response={planner_response}')
+        self.planner_response = planner_response
+        self.plan_reasoning = extract_section(planner_response, 'REASONING')
+        self.plan = extract_section(planner_response, 'PLAN') 
 
-    llm = ChatOpenAI(
-        temperature=0,
-        # model_name='gpt-3.5-turbo-1106'
-        model_name='gpt-4-1106-preview'
-    )
-
-    planner = LLMChain(llm=llm, prompt=planner_template)
-    critic = LLMChain(llm=llm, prompt=critic_template)
-    
-    df = pd.DataFrame(columns=['name', 'color_score', 'amount_score', 'llm_response'])
-    for file in os.listdir(dir_path):
-        print(f'Starting test for {file}')
-        file_path = os.path.join(dir_path, file)
-        env.load_state_from_file(file_path)
+        self.instructions = extract_instructions(planner_response)
+        self.inst_idx = 0
         
-        if render:
-            env.render()
+        return find_next_execute()
+    
+    def end_episode_reflection(self):
+
+        print('Querying the critic...')
+        critic_response = self.critic.run(
+            initial_state=self.initial_state,
+            plan_reasoning=self.plan_reasoning,
+            plan=self.plan,
+            trajectory=self.trajectory 
+        )
         
-        initial_state_repr = get_env_text_repr(env._get_observation())
-        print(initial_state_repr)
-        response = planner.run(initial_state_repr)
-        print(response)
-
-        instructions = extract_instructions(response)
-        trajectory = execute_instructions(env, instructions, render=render)
-
-        # feedback = planner()
-
-        color_score, amount_score = env.calculate_scores()
-        # append to df 
-        df.loc[len(df)] = (file, color_score, amount_score, response)
-    
-        df.to_csv('results/l1-no-refine.csv', index=False)
-
-# def generate_episode(path):
-#     env = ColorMixingEnv()
-#     llm = ChatOpenAI(
-#         temperature=0,
-#         # model_name='gpt-3.5-turbo-1106'
-#         model_name='gpt-4-1106-preview'
-#     )
-#     planner = LLMChain(llm=llm, prompt=planner_template)
-#     llm.cal
-#     # critic = LLMChain(llm=llm, prompt=critic_template)
-
-#     env.load_state_from_file(path)
-#     env_state_text = get_env_text_repr(env._get_observation())
-#     print(env_state_text)
-#     env.render()
-    
+        self.critic_response = critic_response
+        print(f'critic_response={critic_response}')
+        self.feedback = extract_section(critic_response, 'FEEDBACK')
+        
+        # need to reset a bunch of stuff
+        self.trajectory = ''
+        self.instructions = None
 
 
-
-def test_on_single(path, num_iter, render=True):
+def iterative_control_loop(path, agent : LLMAgent, num_iter=3, render=True, log_path=None):
     env = ColorMixingEnv()
-    llm = ChatOpenAI(
-        temperature=0,
-        # model_name='gpt-3.5-turbo-1106'
-        model_name='gpt-4-1106-preview'
-    )
-    planner = LLMChain(llm=llm, prompt=planner_template)
-    critic = LLMChain(llm=llm, prompt=critic_template)
-
     env.load_state_from_file(path)
-    env_state_text = get_env_text_repr(env._get_observation())
+    env_state_text = env.get_env_text_repr()
+
     print(env_state_text)
     if render:
         env.render()
 
-    prev_plan = ''
-    prev_reasoning = ''
-    feedback = ''
-
+    # collect data
     df = pd.DataFrame(columns=[
         'iteration', 
         'color_score', 
@@ -189,48 +164,32 @@ def test_on_single(path, num_iter, render=True):
     ])
 
     for i in range(num_iter):
-        print('Querying the planner...')
-        planner_response = planner.run(
-            state=env_state_text,
-            prev_reasoning=prev_reasoning,
-            prev_plan=prev_plan,
-            feedback=feedback
-        )
-        print(f'planner_response=\n{planner_response}')
+        while True:
+            action = agent.next_action(env.get_env_text_repr())
+            env.execute_instruction(action, render=render)
+            
+            if action[0] == 'DONE':
+                break
 
-        instructions = extract_instructions(planner_response)
-        plan_reasoning = extract_section(planner_response, 'REASONING')
-        plan = extract_section(planner_response, 'PLAN') 
-
-        trajectory = execute_instructions(env, instructions, render=render)
         color_score, amount_score = env.calculate_scores()
         print(f'color_score = {color_score}, amount_score {amount_score}')
 
         if i == num_iter - 1:
             # no point in asking for feedback...
-            df.loc[len(df)] = (i, color_score, amount_score, planner_response, None)
-            df.to_csv(f'results/level1/{os.path.basename(path)}.csv', index=False)
+            if log_path != None:
+                df.loc[len(df)] = (i, color_score, amount_score, agent.planner_response, None)
+                df.to_csv(log_path, index=False)
             break 
-
-        print('Querying the critic...')
-        critic_response = critic.run(
-            initial_state=env_state_text,
-            plan_reasoning=plan_reasoning,
-            plan=plan,
-            trajectory=trajectory 
-        )
-        print(f'critic_response={critic_response}')
-    
-        feedback = extract_section(critic_response, 'FEEDBACK')
-        prev_reasoning = plan_reasoning
-        prev_plan = plan
+        
+        agent.end_episode_reflection()
 
         # reset the environment 
         env.load_state_from_file(path)
         
         # append to df 
-        df.loc[len(df)] = (i, color_score, amount_score, planner_response, critic_response)
-        df.to_csv(f'results/level1/{os.path.basename(path)}.csv', index=False)
+        if log_path != None:
+            df.loc[len(df)] = (i, color_score, amount_score, agent.planner_response, agent.critic_response)
+            df.to_csv(log_path, index=False)
 
 def replay(csv_path):
     df = pd.read_csv(csv_path)
@@ -244,7 +203,11 @@ def replay(csv_path):
         planner_response = row['planner_response']
         print(f'Planner response:\n{planner_response}')
         instructions = extract_instructions(planner_response)
-        execute_instructions(env, instructions)
+        
+        for inst in instructions:
+            env.execute_instruction(inst, render=True)
+
+        # execute_instructions(env, instructions)
         color_score, amount_score = row['color_score'], row['amount_score']
         print(f'color_score={color_score}, amount_score={amount_score}')
 
@@ -255,14 +218,18 @@ def replay(csv_path):
         env.load_state_from_file(f'data/level1/{file_name}')
 
 if __name__ == '__main__':
-    replay('results/level1/magenta.csv')
+    replay('results/ablation/no_critic/beige.csv')
     # evaluate_on_dir('data/level1/')
+    # agent = UnreactivePlannerCritic()
+    # iterative_control_loop('data/level1/lavendar', agent)
 
-    # test_on_single('data/level1/magenta', 3)
+
     # for file in os.listdir('data/level1/'):
     #     print(f'Starting test for {file}')
     #     file_path = os.path.join('data/level1/', file)
-    #     test_on_single(file_path, 3, render=False)
+        
+    #     agent = UnreactivePlannerCritic()
+    #     iterative_control_loop(file_path, agent, num_iter=3, render=True, log_path=f'results/tests/{file}.csv')
 
 
     # return

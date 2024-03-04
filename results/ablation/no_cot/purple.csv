@@ -1,0 +1,19 @@
+iteration,color_score,amount_score,planner_response,critic_response
+0,0.9071435260905724,1.0,"--- PLAN START ---
+POUR(0, 5, 50) # pour 50 ml of red paint to empty beaker 5
+POUR(2, 5, 50) # pour 50 ml of blue paint into beaker 5 to mix with red and create purple
+POUR(0, 5, 25) # pour an additional 25 ml of red paint to beaker 5 to adjust the purple shade
+POUR(2, 5, 25) # pour an additional 25 ml of blue paint to beaker 5 to reach the target amount of 150ml
+DONE(5) # the desired mixture was created in beaker 5
+--- PLAN END ---",
+1,0.9103454734667595,1.0,"--- PLAN START ---
+POUR(0, 5, 75) # pour 75 ml of red paint to empty beaker 5 to start creating purple
+POUR(2, 5, 75) # pour 75 ml of blue paint into beaker 5 to mix with red and create purple
+DONE(5) # the desired mixture was created in beaker 5
+--- PLAN END ---",
+2,0.9551727367333798,1.0,"--- PLAN START ---
+POUR(0, 5, 50) # pour 50 ml of red paint to empty beaker 5 to start creating the target color
+POUR(2, 5, 50) # pour 50 ml of blue paint into beaker 5 to mix with red and create purple
+POUR(4, 5, 50) # pour 50 ml of black paint to darken the purple to match the target color
+DONE(5) # the desired mixture was created in beaker 5
+--- PLAN END ---",

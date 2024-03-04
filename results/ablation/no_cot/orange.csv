@@ -1,0 +1,18 @@
+iteration,color_score,amount_score,planner_response,critic_response
+0,0.7403262133788682,1.0,"--- PLAN START ---
+POUR(0, 5, 100) # pour 100 ml of red paint to empty beaker 5
+POUR(1, 5, 50)  # pour 50 ml of green paint into beaker 5
+DONE(5) # desired mixture was created in beaker 5
+--- PLAN END ---",
+1,0.7776893678366187,0.75,"--- PLAN START ---
+POUR(0, 5, 100) # pour 100 ml of red paint to empty beaker 5
+POUR(1, 5, 62)  # pour 62 ml of green paint into beaker 5
+POUR(3, 5, 50)  # pour 50 ml of white paint into beaker 5 to lighten the color
+DONE(5) # desired mixture was created in beaker 5
+--- PLAN END ---",
+2,0.7787873760600713,1.0,"--- PLAN START ---
+POUR(0, 5, 100) # pour 100 ml of red paint to empty beaker 5
+POUR(1, 5, 32)  # pour 32 ml of green paint into beaker 5 to get the right shade of orange
+POUR(3, 5, 18)  # pour 18 ml of white paint into beaker 5 to lighten the color and reach the target amount
+DONE(5) # desired mixture was created in beaker 5
+--- PLAN END ---",

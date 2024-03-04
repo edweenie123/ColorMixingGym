@@ -113,8 +113,312 @@ Feedback:
 --- PREVIOUS PLAN END ---
 """
 
+planner_instructions_no_feedback = """
+Imagine you are in a "color-mixing environment". The environment consists of
+
+- Initial starting beakers each containing a paint of a certain color and amount. 
+- A target beaker which you want to create
+
+Your objective is to plan a sequence of actions in order to produce a beaker 
+that matches the target beaker as close as possible (in both color and amount).
+
+You will be given a textual representation of environment which tells you the 
+RGB value and amount of paints in each beaker as well as the target beaker you 
+are trying to achieve.
+
+After receiving the environment state, you should first do some reasoning in 
+natural language to reason how exactly you are going to produce the target beaker.
+Then, you should output a sequence of actions. There are 2 types of actions:
+
+1. POUR(from_beaker, to_beaker, transfer_amount)
+2. DONE(beaker)
+
+A POUR action is used to pour paint from one beaker where
+
+- "from_beaker" is an integer representing the index of the beaker [0, N-1] from which the paint is poured from.
+- "to_beaker" is an integer representing the index of the beaker [0, N-1] which the paint is poured to.
+- "transfer_amount" is an integer (0 to 100) indicating how much paint (in ml) is transferred from the 'from_beaker' to the 'to_beaker'.
+
+A DONE action indicates the end of a plan where
+
+- "beaker" is an integer representing the index of the beaker which contains desired mixture
+
+You may also be given  
+1. a previous plan with reasoning
+2. feedback for that plan
+
+In this case, you should start with the previous plan and incorporate the 
+feedback to improve the plan instead of starting from scratch.
+
+Here is are some examples:
+
+--- ENVIRONMENT START ---
+ENVIRONMENT STATE:
+Beaker 0: Color: RGB(255, 0, 0), amount: 97ml
+Beaker 1: Color: RGB(0, 255, 0), amount: 98ml
+Beaker 2: Color: RGB(0, 0, 255), amount: 101ml
+Beaker 3: Color: RGB(0, 0, 0), amount: 0ml
+Target beaker: RGB(76, 107, 43), amount: 120ml
+--- ENVIRONMENT END ---
+
+--- PREVIOUS PLAN START ---
+Plan reasoning: 
+
+Plan:
+
+Feedback:
+--- PREVIOUS PLAN END ---
+
+--- REASONING START ---
+Since there is no previous plan, I will formula a plan from scratch.
+I see that I have access to a good amount of red, green and blue paint,
+relevant to the target beaker so paint shortage shouldn't be a problem.
+I also notice that beaker 3 is empty so I will use this beaker to store
+my final result. The target color seems to be a woodland (darkish) green color.
+Judging from the RGB code of the target beaker, I think I will need the most
+green paint (from beaker 1), a good amount of red paint (from beaker 0)
+and a bit of blue paint (from beaker 3). As an initial plan, lets say
+I add 50ml of green paint, 44ml of red paint and 26ml of blue paint
+to the empty beaker as 50 + 44 + 26 = 120ml which is the target amount.
+--- REASONING END ---
+
+--- PLAN START ---
+POUR(1, 3, 50) # pour 50 ml of red paint to empty beaker 3
+POUR(0, 3, 44) # pour 44 ml of green paint into beaker 3
+POUR(2, 3, 26) # pour 26 ml of blue paint into beaker 3
+DONE(3) # desired mixture was created in beaker 3
+--- PLAN END ---
+
+END OF EXAMPLES
+
+Before you start here are some tips:
+
+- You MUST sandwitch each section with tokens --- <SECTION NAME> START --- and --- <SECTION NAME> END ---
+- You can use the # symbol to write comments in the plan
+- Do NOT put mathematical expressions in any of the parameters to POUR. Just put integers.
+- The environment uses a subtractive color mixing model. You should 
+leverage this fact to predict the result of mixing two colors for the 
+purposes of planning. 
+- As you plan your steps, remember that when two colors are mixed, the resulting 
+color is influenced by the relative proportions of each color. For instance, 
+consider the mixing of red and blue liquids. If you mix 50 ml of red with 10 ml 
+of blue, the red color will have a 5 times greater influence on the resulting 
+color due to its higher volume. This means the final color will lean more towards red. 
+Keep this in mind while planning your actions, as the proportions of colors you mix will 
+significantly affect the outcome.
+- When generating a new plan, you SHOULD NOT continue off the previous plan; 
+This means that you should output ALL steps required to produce the target beaker
+from the INITIAL evironment state!
+
+--- ENVIRONMENT START ---
+{state}
+--- ENVIRONMENT END ---
+
+--- PREVIOUS PLAN START ---
+Plan reasoning: 
+{prev_reasoning}
+
+Plan:
+{prev_plan}
+
+Trajectory:
+{trajectory}
+--- PREVIOUS PLAN END ---
+"""
+
+planner_instructions_no_few_shot = """
+Imagine you are in a "color-mixing environment". The environment consists of
+
+- Initial starting beakers each containing a paint of a certain color and amount. 
+- A target beaker which you want to create
+
+Your objective is to plan a sequence of actions in order to produce a beaker 
+that matches the target beaker as close as possible (in both color and amount).
+
+You will be given a textual representation of environment which tells you the 
+RGB value and amount of paints in each beaker as well as the target beaker you 
+are trying to achieve.
+
+After receiving the environment state, you should first do some reasoning in 
+natural language to reason how exactly you are going to produce the target beaker.
+Then, you should output a sequence of actions. There are 2 types of actions:
+
+1. POUR(from_beaker, to_beaker, transfer_amount)
+2. DONE(beaker)
+
+A POUR action is used to pour paint from one beaker where
+
+- "from_beaker" is an integer representing the index of the beaker [0, N-1] from which the paint is poured from.
+- "to_beaker" is an integer representing the index of the beaker [0, N-1] which the paint is poured to.
+- "transfer_amount" is an integer (0 to 100) indicating how much paint (in ml) is transferred from the 'from_beaker' to the 'to_beaker'.
+
+A DONE action indicates the end of a plan where
+
+- "beaker" is an integer representing the index of the beaker which contains desired mixture
+
+You may also be given  
+1. a previous plan with reasoning
+2. feedback for that plan
+
+In this case, you should start with the previous plan and incorporate the 
+feedback to improve the plan instead of starting from scratch.
+
+Here are some examples:
+
+--- ENVIRONMENT START ---
+<env state here>
+--- ENVIRONMENT END ---
+
+--- PREVIOUS PLAN START ---
+Plan reasoning: 
+
+Plan:
+
+Feedback:
+--- PREVIOUS PLAN END ---
+
+--- REASONING START ---
+<Your reasoning here>
+--- REASONING END ---
+
+--- PLAN START ---
+<Your plan here>
+POUR(x, y, z) # Example of what an instruction looks like
+DONE(x) # Example of what an instruction looks like
+--- PLAN END ---
+
+END OF EXAMPLES
+
+Before you start here are some tips:
+
+- You MUST sandwitch each section with tokens --- <SECTION NAME> START --- and --- <SECTION NAME> END ---
+- You can use the # symbol to write comments in the plan
+- Do NOT put mathematical expressions in any of the parameters to POUR. Just put integers.
+- The environment uses a subtractive color mixing model. You should 
+leverage this fact to predict the result of mixing two colors for the 
+purposes of planning. 
+- As you plan your steps, remember that when two colors are mixed, the resulting 
+color is influenced by the relative proportions of each color. For instance, 
+consider the mixing of red and blue liquids. If you mix 50 ml of red with 10 ml 
+of blue, the red color will have a 5 times greater influence on the resulting 
+color due to its higher volume. This means the final color will lean more towards red. 
+Keep this in mind while planning your actions, as the proportions of colors you mix will 
+significantly affect the outcome.
+- When generating a new plan, you SHOULD NOT continue off the previous plan; 
+This means that you should output ALL steps required to produce the target beaker
+from the INITIAL evironment state!
+
+--- ENVIRONMENT START ---
+{state}
+--- ENVIRONMENT END ---
+
+--- PREVIOUS PLAN START ---
+Plan reasoning: 
+{prev_reasoning}
+
+Plan:
+{prev_plan}
+
+Feedback:
+{feedback}
+--- PREVIOUS PLAN END ---
+"""
 
 
+planner_instructions_no_cot = """
+Imagine you are in a "color-mixing environment". The environment consists of
+
+- Initial starting beakers each containing a paint of a certain color and amount. 
+- A target beaker which you want to create
+
+Your objective is to plan a sequence of actions in order to produce a beaker 
+that matches the target beaker as close as possible (in both color and amount).
+
+You will be given a textual representation of environment which tells you the 
+RGB value and amount of paints in each beaker as well as the target beaker you 
+are trying to achieve.
+
+Then, you should output a sequence of actions to produce the target beaker. 
+There are 2 types of actions:
+
+1. POUR(from_beaker, to_beaker, transfer_amount)
+2. DONE(beaker)
+
+A POUR action is used to pour paint from one beaker where
+
+- "from_beaker" is an integer representing the index of the beaker [0, N-1] from which the paint is poured from.
+- "to_beaker" is an integer representing the index of the beaker [0, N-1] which the paint is poured to.
+- "transfer_amount" is an integer (0 to 100) indicating how much paint (in ml) is transferred from the 'from_beaker' to the 'to_beaker'.
+
+A DONE action indicates the end of a plan where
+
+- "beaker" is an integer representing the index of the beaker which contains desired mixture
+
+You may also be given  
+1. a previous plan with reasoning
+2. feedback for that plan
+
+In this case, you should start with the previous plan and incorporate the 
+feedback to improve the plan instead of starting from scratch.
+
+Here is are some examples:
+
+--- ENVIRONMENT START ---
+ENVIRONMENT STATE:
+Beaker 0: Color: RGB(255, 0, 0), amount: 97ml
+Beaker 1: Color: RGB(0, 255, 0), amount: 98ml
+Beaker 2: Color: RGB(0, 0, 255), amount: 101ml
+Beaker 3: Color: RGB(0, 0, 0), amount: 0ml
+Target beaker: RGB(76, 107, 43), amount: 120ml
+--- ENVIRONMENT END ---
+
+--- PREVIOUS PLAN START ---
+Plan:
+
+Feedback:
+--- PREVIOUS PLAN END ---
+
+--- PLAN START ---
+POUR(1, 3, 50) # pour 50 ml of red paint to empty beaker 3
+POUR(0, 3, 44) # pour 44 ml of green paint into beaker 3
+POUR(2, 3, 26) # pour 26 ml of blue paint into beaker 3
+DONE(3) # desired mixture was created in beaker 3
+--- PLAN END ---
+
+END OF EXAMPLES
+
+Before you start here are some tips:
+
+- You MUST sandwitch each section with tokens --- <SECTION NAME> START --- and --- <SECTION NAME> END ---
+- You can use the # symbol to write comments in the plan
+- Do NOT put mathematical expressions in any of the parameters to POUR. Just put integers.
+- The environment uses a subtractive color mixing model. You should 
+leverage this fact to predict the result of mixing two colors for the 
+purposes of planning. 
+- As you plan your steps, remember that when two colors are mixed, the resulting 
+color is influenced by the relative proportions of each color. For instance, 
+consider the mixing of red and blue liquids. If you mix 50 ml of red with 10 ml 
+of blue, the red color will have a 5 times greater influence on the resulting 
+color due to its higher volume. This means the final color will lean more towards red. 
+Keep this in mind while planning your actions, as the proportions of colors you mix will 
+significantly affect the outcome.
+- When generating a new plan, you SHOULD NOT continue off the previous plan; 
+This means that you should output ALL steps required to produce the target beaker
+from the INITIAL evironment state!
+- You can NOT do any reasoning prior to generating the plan. Just output the plan directly.
+
+--- ENVIRONMENT START ---
+{state}
+--- ENVIRONMENT END ---
+
+--- PREVIOUS PLAN START ---
+Plan:
+{prev_plan}
+
+Trajectory:
+{trajectory}
+--- PREVIOUS PLAN END ---
+"""
 
 planner_reactive_instructions = """
 Imagine you are in a "color-mixing environment". The environment consists of
@@ -478,6 +782,102 @@ Before you start here are some tips:
 --- TRAJECTORY END ---
 """
 
+critic_instructions_no_few_shot = """
+You are a critic whose objective is to provide valuable feedback to a planner
+for a "color-mixing environment". 
+
+The environment consists of several beakers each with paint of a certain color 
+and amount. The objective of the planner is to mix paints to create some 
+specified target beaker.
+
+There are 2 types of actions:
+
+1. POUR(from_beaker, to_beaker, transfer_amount)
+2. DONE(beaker)
+
+A POUR action is used to pour paint from one beaker where
+
+- "from_beaker" is an integer representing the index of the beaker [0, N-1] from which the paint is poured from.
+- "to_beaker" is an integer representing the index of the beaker [0, N-1] which the paint is poured to.
+- "transfer_amount" is an integer (0 to 100) indicating how much paint (in ml) is transferred from the 'from_beaker' to the 'to_beaker'.
+
+A DONE action indicates the end of a plan where
+
+- "beaker" is an integer representing the index of the beaker which contains desired mixture
+
+You will be given:
+1. The initial environment state
+2. The planner's reasoning
+3. The planner's generated plan
+4. The environment state after each action in the plan (the trajectory)
+
+With all this information you should first do some reasoning to try to understand
+what the planner's strategy and understand what happened during the trajectory.
+
+After doing this reasoning, please output concrete feedback to the planner
+to help it improve its plan.
+
+Here is an example of the structure responses:
+    
+--- ENVIRONMENT START ---
+<env start here>
+--- ENVIRONMENT END ---
+
+--- PLAN REASONING START ---
+<plan reasoning here>
+--- PLAN REASONING END ---
+
+--- PLAN START ---
+<plan here>
+--- PLAN END ---
+
+--- TRAJECTORY START ---
+<trajectory here>
+--- TRAJECTORY END ---
+
+--- FEEDBACK REASONING START ---
+<feedback reasoning here>
+--- FEEDBACK REASONING END ---
+
+--- FEEDBACK START ---
+<put your feedback here>
+--- FEEDBACK END ---
+
+END OF EXAMPLES.
+
+Before you start here are some tips:
+- You should do some feedback reasoning before actually providing the final feedback
+    - To to ensure that the final feedback you give is concise and high quality
+- You MUST sandwitch your feedback reasoning with tokens --- FEEDBACK REASONING START --- and --- FEEDBACK REASONING END ---
+- You MUST sandwitch your feedback with tokens --- FEEDBACK START --- and --- FEEDBACK END ---
+- Your feedback should be as specific and helpful as possible to improve the plan in the next iteration
+    - Mention good things about the plan (aspects to keep in the next iteration)
+    - Also mention bad things about the plan (and how to fix them!)
+    - Mention specific ml amounts in your feedback!
+
+DO NOT FORGET TO SURROUND YOUR FEEDBACK WITH response WITH --- FEEDBACK START --- AND --- FEEDBACK END ---
+    
+
+--- ENVIRONMENT START ---
+{initial_state}
+--- ENVIRONMENT END ---
+
+--- REASONING START ---
+{plan_reasoning}
+--- REASONING END ---
+
+--- PLAN START ---
+{plan}
+--- PLAN END ---
+
+--- TRAJECTORY START ---
+{trajectory}
+--- TRAJECTORY END ---
+"""
+
+
+
+
 more_examples = """
 Beaker 0: Color: RGB(255, 0, 0), amount: 100ml
 Beaker 1: Color: RGB(0, 255, 0), amount: 100ml
@@ -566,8 +966,28 @@ planner_template = PromptTemplate(
     template=planner_instructions
 )
 
+planner_template_no_feedback = PromptTemplate(
+    input_variables=['state', 'prev_reasoning', 'prev_plan', 'trajectory'],
+    template=planner_instructions_no_feedback
+)
+
+planner_template_no_few_shot = PromptTemplate(
+    input_variables=['state', 'prev_reasoning', 'prev_plan', 'feedback'],
+    template=planner_instructions_no_few_shot
+)
+
+planner_template_no_cot = PromptTemplate(
+    input_variables=['state', 'prev_plan', 'trajectory'],
+    template=planner_instructions_no_cot
+)
+
 critic_template = PromptTemplate(
     input_variables=['initial_state', 'plan_reasoning', 'plan', 'trajectory'],
     template=critic_instructions
+)
+
+critic_template_no_few_shot = PromptTemplate(
+    input_variables=['initial_state', 'plan_reasoning', 'plan', 'trajectory'],
+    template=critic_instructions_no_few_shot
 )
 

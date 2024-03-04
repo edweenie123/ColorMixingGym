@@ -1,0 +1,18 @@
+iteration,color_score,amount_score,planner_response,critic_response
+0,0.829227805597236,1.0,"--- PLAN START ---
+POUR(2, 5, 60) # pour 60 ml of blue paint into empty beaker 5
+POUR(1, 5, 20) # pour 20 ml of green paint into beaker 5
+POUR(0, 5, 2)  # pour 2 ml of red paint into beaker 5
+DONE(5)        # the desired mixture is in beaker 5
+--- PLAN END ---",
+1,0.8371879813153567,1.0,"--- PLAN START ---
+POUR(2, 5, 60) # pour 60 ml of blue paint into empty beaker 5
+POUR(1, 5, 22) # pour 22 ml of green paint into beaker 5
+DONE(5)        # the desired mixture is in beaker 5
+--- PLAN END ---",
+2,0.8182348358263141,1.0,"--- PLAN START ---
+POUR(2, 5, 60) # pour 60 ml of blue paint into empty beaker 5
+POUR(1, 5, 18) # pour 18 ml of green paint into beaker 5
+POUR(0, 5, 4)  # pour 4 ml of red paint into beaker 5
+DONE(5)        # the desired mixture is in beaker 5
+--- PLAN END ---",

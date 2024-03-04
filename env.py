@@ -72,6 +72,8 @@ class ColorMixingEnv(gym.Env):
         # self.rand_mode = rand_mode
         # self.initial_score = self.calculate_score()  
         self.noise_level = noise_level
+        # self.initialized_screen
+        self.screen = None
         self.reset()
     
     def set_num_beakers(self, num_beakers, load_dummy=False):
@@ -356,6 +358,48 @@ class ColorMixingEnv(gym.Env):
 
         return np.concatenate([colors, amounts], axis=1).astype('int64')  # Concatenate along columns
 
+    def get_env_text_repr(self):
+        """
+        Receives observation from environment (env state) and converts it
+        to a string representation
+        """
+        
+        obs = self._get_observation()
+        beaker_descriptions = []
+        num_beakers = len(obs) - 1  # Excluding the target beaker
+
+        # Process each beaker
+        for idx in range(num_beakers):
+            beaker = obs[idx]
+            color_str = f"Color: RGB({beaker[0]}, {beaker[1]}, {beaker[2]})"
+            beaker_descriptions.append(f"Beaker {idx}: {color_str}, amount: {beaker[3]}ml")
+
+        # Process the target beaker
+        target_beaker = obs[-1]
+        target_color_str = f"RGB({target_beaker[0]}, {target_beaker[1]}, {target_beaker[2]})"
+        target_description = f"Target beaker: {target_color_str}, amount: {target_beaker[3]}ml"
+
+        text_repr = "\n".join(beaker_descriptions) + "\n" + target_description
+        return text_repr
+    
+    def execute_instruction(self, instruction, render=True):
+        # if render:
+        #     self.render()
+    
+        ins_type, args = instruction
+        # ins_str = '{}({})'.format(ins_type, ', '.join(map(str, args)))
+
+        if ins_type == 'POUR':
+            from_idx, to_idx, amt = args
+            self.step((from_idx, to_idx, amt, 0, 0))
+        elif ins_type == 'DONE':
+            comp_idx, = args
+            self.step((0, 0, 0, 1, comp_idx))
+
+        if render:
+            self.render()
+
+
     def load_state_from_file(self, file_path):
         with open(file_path, 'r') as file:
             self.beakers = []
@@ -383,6 +427,8 @@ class ColorMixingEnv(gym.Env):
 
         # Return the initial observation
         return self._get_observation()
+    
+
 
     def render(self, mode='human'):
         # Define window dimensions and colors
@@ -394,6 +440,9 @@ class ColorMixingEnv(gym.Env):
         # Initialize Pygame if it hasn't been initialized
         if not pygame.get_init():
             pygame.init()
+            self.screen = pygame.display.set_mode((screen_width, screen_height))
+
+        if self.screen == None:
             self.screen = pygame.display.set_mode((screen_width, screen_height))
 
         screen = self.screen
