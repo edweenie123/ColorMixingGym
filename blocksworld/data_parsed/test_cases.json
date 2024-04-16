@@ -1,0 +1,8046 @@
+{
+ "pick-up": [
+  {
+   "state": [
+    "handempty",
+    "on a c",
+    "on b a",
+    "ontable c",
+    "ontable d",
+    "clear b",
+    "clear d"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear a",
+    "clear b",
+    "on b c"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable d",
+    "on c d",
+    "clear b",
+    "holding a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "on c b",
+    "on d c",
+    "ontable e",
+    "clear a",
+    "clear d",
+    "clear e"
+   ],
+   "action": "pick-up e",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "holding e",
+    "clear d",
+    "on d c",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "clear d",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "on d c",
+    "handempty",
+    "clear a",
+    "on c b"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable e",
+    "ontable b",
+    "clear e",
+    "clear d",
+    "on d c",
+    "on c b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "on a c",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "on d a",
+    "ontable c",
+    "holding b",
+    "on a c",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "clear c",
+    "clear d"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable b",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "on d b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "on a d",
+    "ontable b",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "on a d",
+    "holding c",
+    "ontable b",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "ontable a",
+    "clear c",
+    "handempty",
+    "clear d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "clear c",
+    "clear d",
+    "on c b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "clear d",
+    "handempty",
+    "clear a",
+    "on a c",
+    "on c b"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable b",
+    "holding d",
+    "clear a",
+    "on a c",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "on b c",
+    "ontable c",
+    "on d b",
+    "holding a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable b",
+    "clear a",
+    "ontable a",
+    "on d b",
+    "on c d",
+    "clear c"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable b",
+    "on c d",
+    "on d b",
+    "holding a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable b",
+    "on c d",
+    "on d b",
+    "ontable a",
+    "clear a",
+    "clear c"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "clear c",
+    "ontable b",
+    "on c d",
+    "on d b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a d",
+    "ontable b",
+    "ontable c",
+    "on d c",
+    "clear a",
+    "clear b"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b c",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "clear d"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "on b c",
+    "ontable c",
+    "on d b",
+    "holding a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "on b c",
+    "ontable c",
+    "on d b",
+    "holding a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b d"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "holding c",
+    "clear b",
+    "clear a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b a",
+    "on c b",
+    "ontable d",
+    "clear c",
+    "clear d"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "holding d",
+    "ontable a",
+    "on c b",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable a",
+    "on c b",
+    "clear d",
+    "on b a",
+    "clear c"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "clear c",
+    "holding d",
+    "ontable a",
+    "on c b",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable a",
+    "on c b",
+    "clear d",
+    "on b a",
+    "clear c"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "clear c",
+    "holding d",
+    "ontable a",
+    "on c b",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable a",
+    "on c b",
+    "clear d",
+    "on b a",
+    "clear c"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "clear c",
+    "holding d",
+    "ontable a",
+    "on c b",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "clear c",
+    "on d a",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b a",
+    "on c b",
+    "ontable d",
+    "clear c",
+    "clear d"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "holding d",
+    "ontable a",
+    "on c b",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "on c d",
+    "handempty",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "ontable d",
+    "holding b",
+    "on c d",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b a",
+    "ontable c",
+    "ontable d",
+    "clear b",
+    "clear c",
+    "clear d"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable a",
+    "on b a",
+    "clear c",
+    "ontable c",
+    "holding d",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "on b a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "on d b"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "holding c",
+    "ontable a",
+    "on d b",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "on c a",
+    "on d c",
+    "clear b",
+    "clear d"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "on d c",
+    "holding b",
+    "ontable a",
+    "on c a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "on c a",
+    "handempty",
+    "clear b"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "on c a",
+    "clear c",
+    "holding d",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b d",
+    "ontable c",
+    "ontable d",
+    "on e b",
+    "clear a",
+    "clear c",
+    "clear e"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable d",
+    "clear e",
+    "on e b",
+    "clear c",
+    "ontable c",
+    "holding a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "on b d",
+    "on e b",
+    "clear e",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear a"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "clear e",
+    "ontable a",
+    "on e b",
+    "holding c",
+    "clear a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear c",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "on d c",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable b",
+    "clear d",
+    "on d c",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b c",
+    "on c a",
+    "ontable d",
+    "clear b",
+    "clear d"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "on b c",
+    "holding d",
+    "clear b",
+    "ontable a",
+    "on c a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "clear b",
+    "ontable a",
+    "on c a",
+    "clear d",
+    "on b c"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "on b c",
+    "holding d",
+    "clear b",
+    "ontable a",
+    "on c a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "on a b",
+    "clear c",
+    "handempty",
+    "clear d",
+    "ontable c",
+    "clear a"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "on a b",
+    "clear d",
+    "holding c",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b d",
+    "ontable c",
+    "ontable d",
+    "clear a",
+    "clear b",
+    "clear c"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "ontable c",
+    "clear b",
+    "holding a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a b",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "clear a",
+    "on b d"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "on b d",
+    "holding c",
+    "clear a",
+    "on a b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "ontable b",
+    "on c d",
+    "ontable a",
+    "handempty",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b a",
+    "ontable c",
+    "on d b",
+    "clear c",
+    "clear d"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "holding c",
+    "ontable a",
+    "on d b",
+    "clear d",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "clear c",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "on b a",
+    "clear d",
+    "holding c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "clear c",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "clear c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "clear c",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "ontable b",
+    "holding c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "on a b",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "on d a"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "on d a",
+    "holding c",
+    "ontable b",
+    "on a b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b d",
+    "ontable c",
+    "ontable d",
+    "clear a",
+    "clear b",
+    "clear c"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "holding c",
+    "clear b",
+    "clear a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a c",
+    "on b a",
+    "ontable c",
+    "ontable d",
+    "clear b",
+    "clear d"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "on b d",
+    "clear b",
+    "ontable a",
+    "on d a",
+    "clear c"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "holding c",
+    "clear b",
+    "ontable a",
+    "on d a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "ontable c",
+    "on d c",
+    "clear a",
+    "clear b",
+    "clear d"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable b",
+    "clear d",
+    "on d c",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a b",
+    "on b d",
+    "ontable c",
+    "ontable d",
+    "clear a",
+    "clear c"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "on b d",
+    "holding c",
+    "clear a",
+    "on a b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear c",
+    "clear a",
+    "on a b",
+    "on b d"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "on b d",
+    "holding c",
+    "clear a",
+    "on a b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear c",
+    "clear a",
+    "on a b",
+    "on b d"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "on b d",
+    "holding c",
+    "clear a",
+    "on a b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "ontable c",
+    "on d a",
+    "clear b",
+    "clear c",
+    "clear d"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable b",
+    "clear b",
+    "ontable a",
+    "on c d",
+    "on d a",
+    "clear c"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "holding b",
+    "ontable a",
+    "on c d",
+    "on d a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "ontable c",
+    "on d a",
+    "clear b",
+    "clear c",
+    "clear d"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable b",
+    "clear b",
+    "ontable a",
+    "on c d",
+    "on d a",
+    "clear c"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "holding b",
+    "ontable a",
+    "on c d",
+    "on d a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable b",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "on d b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "on c b",
+    "on d c",
+    "clear a",
+    "clear d"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "on d c",
+    "ontable b",
+    "on c b",
+    "holding a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "handempty",
+    "ontable b",
+    "ontable a",
+    "clear a",
+    "on c b",
+    "clear d"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "on d c",
+    "ontable b",
+    "on c b",
+    "holding a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a d",
+    "ontable b",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "clear c"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "on a d",
+    "holding c",
+    "ontable b",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on a c"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "on b a",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "holding c",
+    "clear b",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a",
+    "clear c"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "holding c",
+    "clear b",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b d",
+    "ontable c",
+    "on d e",
+    "on e c",
+    "clear a",
+    "clear b"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "on e c",
+    "ontable c",
+    "on d e",
+    "clear b",
+    "holding a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d e",
+    "clear b",
+    "clear a",
+    "on e c"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "on d e",
+    "clear a",
+    "on e c"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "clear c",
+    "clear d",
+    "ontable a",
+    "on b e",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable e",
+    "clear c",
+    "clear d",
+    "on b e",
+    "ontable c",
+    "on d b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "clear c",
+    "clear d",
+    "ontable a",
+    "on b e",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable e",
+    "clear c",
+    "clear d",
+    "on b e",
+    "ontable c",
+    "on d b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "handempty",
+    "ontable c",
+    "on b d",
+    "clear b",
+    "ontable a",
+    "clear a"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "on d c",
+    "ontable c",
+    "clear b",
+    "holding a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a c",
+    "ontable b",
+    "on c b",
+    "ontable d",
+    "clear a",
+    "clear d"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable b",
+    "holding d",
+    "clear a",
+    "on a c",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "handempty",
+    "clear a",
+    "on c b",
+    "on b d"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable d",
+    "on b d",
+    "on c b",
+    "holding a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "clear a",
+    "on c b"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "clear d",
+    "clear c",
+    "on c b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "clear d",
+    "handempty",
+    "clear a",
+    "on a c",
+    "on c b"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable b",
+    "holding d",
+    "clear a",
+    "on a c",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "ontable c",
+    "on d c",
+    "clear a",
+    "clear b",
+    "clear d"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "on d c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "on d c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable b",
+    "clear d",
+    "on d c",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "ontable b",
+    "on c d",
+    "ontable a",
+    "handempty",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "ontable a",
+    "clear c",
+    "handempty",
+    "clear d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "clear c",
+    "clear d",
+    "on c b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "on c b",
+    "on d c",
+    "clear a",
+    "clear d"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "on d c",
+    "ontable b",
+    "on c b",
+    "holding a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "handempty",
+    "ontable b",
+    "ontable a",
+    "clear a",
+    "on c b",
+    "clear d"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "on d c",
+    "ontable b",
+    "on c b",
+    "holding a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "on b c",
+    "ontable c",
+    "on d b",
+    "holding a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear c",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "clear b",
+    "on d a"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable b",
+    "clear b",
+    "ontable a",
+    "on c d",
+    "on d a",
+    "clear c"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "holding b",
+    "ontable a",
+    "on c d",
+    "on d a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "pick-up a",
+   "next_state": [
+    "ontable b",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "on d b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "on c b",
+    "ontable d",
+    "clear a",
+    "clear c",
+    "clear d"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear c",
+    "holding d",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "clear a",
+    "on c b"
+   ],
+   "action": "pick-up d",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear c",
+    "holding d",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "ontable e",
+    "on a e",
+    "clear c",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "ontable d",
+    "ontable e",
+    "on a e",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "pick-up c",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "on a d",
+    "ontable b",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "pick-up b",
+   "next_state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  }
+ ],
+ "stack": [
+  {
+   "state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "on d b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "on d b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "on d b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "on c d",
+    "ontable a",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b c",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear a",
+    "clear b",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "on c d",
+    "ontable a",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b c",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear a",
+    "clear b",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on c d",
+    "clear b",
+    "holding a",
+    "on b c"
+   ],
+   "action": "stack a b",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "on c d",
+    "clear a",
+    "on a b",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "clear c",
+    "holding d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "stack d c",
+   "next_state": [
+    "ontable e",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "clear d",
+    "handempty",
+    "on d c",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "clear c",
+    "holding d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable e",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "clear c",
+    "clear d",
+    "handempty",
+    "on d a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable b",
+    "on a c",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "on d b",
+    "clear a",
+    "on a c",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ],
+   "action": "stack a c",
+   "next_state": [
+    "ontable b",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b a",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b a",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b a",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable b",
+    "on a c",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "on d b",
+    "clear a",
+    "on a c",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "on d b",
+    "holding a"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "on a d",
+    "ontable b",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "on a d",
+    "ontable b",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ],
+   "action": "stack a c",
+   "next_state": [
+    "ontable b",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b a",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "on b a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "stack c b",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "ontable a",
+    "clear c",
+    "handempty",
+    "clear d",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "clear c",
+    "clear d",
+    "on c b",
+    "holding a"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "ontable b",
+    "clear c",
+    "handempty",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "on c b"
+   ],
+   "action": "stack a c",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "clear d",
+    "handempty",
+    "clear a",
+    "on a c",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "holding d",
+    "clear a",
+    "on a c",
+    "on c b"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "handempty",
+    "on d a",
+    "ontable b",
+    "on a c",
+    "on c b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "holding c",
+    "ontable b",
+    "ontable a",
+    "on d b",
+    "clear a"
+   ],
+   "action": "stack c d",
+   "next_state": [
+    "handempty",
+    "ontable b",
+    "clear a",
+    "ontable a",
+    "on d b",
+    "on c d",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "on c d",
+    "on d b",
+    "holding a"
+   ],
+   "action": "stack a c",
+   "next_state": [
+    "handempty",
+    "ontable b",
+    "on c d",
+    "on d b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "on c d",
+    "on d b",
+    "holding a",
+    "clear c"
+   ],
+   "action": "stack a c",
+   "next_state": [
+    "handempty",
+    "ontable b",
+    "on c d",
+    "on d b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable b",
+    "on a c",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "on d b",
+    "clear a",
+    "on a c",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "on a d",
+    "ontable b",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b a",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b a",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "on b c",
+    "ontable c",
+    "on d b",
+    "holding a",
+    "clear d"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "on a d",
+    "on d b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable c",
+    "on d b",
+    "clear d",
+    "holding a",
+    "on b c"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "handempty",
+    "on b c",
+    "ontable c",
+    "on a d",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "holding a",
+    "ontable c",
+    "clear b",
+    "on b c"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "clear d",
+    "clear c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b d",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "holding c",
+    "clear b",
+    "clear a",
+    "on b d"
+   ],
+   "action": "stack c b",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "handempty",
+    "clear a",
+    "on c b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable c",
+    "on d b",
+    "clear d",
+    "holding a",
+    "on b c"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "handempty",
+    "on b c",
+    "ontable c",
+    "on a d",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable c",
+    "on d b",
+    "clear d",
+    "holding a",
+    "on b c"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "handempty",
+    "on b c",
+    "ontable c",
+    "on a d",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable c",
+    "on d b",
+    "clear d",
+    "holding a",
+    "on b c"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "handempty",
+    "on b c",
+    "ontable c",
+    "on a d",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable c",
+    "on d b",
+    "clear d",
+    "holding a",
+    "on b c"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "handempty",
+    "on b c",
+    "ontable c",
+    "on a d",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "holding d",
+    "ontable a",
+    "on c b",
+    "on b a"
+   ],
+   "action": "stack d c",
+   "next_state": [
+    "handempty",
+    "on d c",
+    "ontable a",
+    "on c b",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ],
+   "action": "stack b d",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "on b d",
+    "clear b",
+    "ontable a",
+    "on d a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "on d a"
+   ],
+   "action": "stack c b",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear c",
+    "handempty",
+    "clear d",
+    "on d a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "holding c",
+    "ontable a",
+    "clear b"
+   ],
+   "action": "stack c d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "clear b",
+    "ontable a",
+    "on c d",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "holding c",
+    "ontable a",
+    "clear b"
+   ],
+   "action": "stack c d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "clear b",
+    "ontable a",
+    "on c d",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "on c d",
+    "ontable a",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b a",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear b",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "on c d",
+    "clear b"
+   ],
+   "action": "stack a c",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "on c d",
+    "handempty",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "on c d",
+    "clear b"
+   ],
+   "action": "stack a c",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "on c d",
+    "handempty",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "on c d",
+    "clear b"
+   ],
+   "action": "stack a c",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "on c d",
+    "handempty",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "on b a",
+    "clear c",
+    "ontable c",
+    "holding d",
+    "clear b"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "ontable a",
+    "on b a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "on d b"
+   ]
+  },
+  {
+   "state": [
+    "on b a",
+    "clear c",
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "ontable a",
+    "on b a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "on d b"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "on c a",
+    "holding d",
+    "clear b"
+   ],
+   "action": "stack d c",
+   "next_state": [
+    "handempty",
+    "on d c",
+    "ontable b",
+    "ontable a",
+    "clear b",
+    "on c a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear e",
+    "on e b",
+    "clear c",
+    "ontable c",
+    "holding a",
+    "on b d"
+   ],
+   "action": "stack a c",
+   "next_state": [
+    "ontable d",
+    "clear e",
+    "on e b",
+    "handempty",
+    "ontable c",
+    "clear a",
+    "on a c",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear e",
+    "ontable a",
+    "on e b",
+    "holding c",
+    "clear a",
+    "on b d"
+   ],
+   "action": "stack c a",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "on b d",
+    "on e b",
+    "clear e",
+    "ontable a",
+    "on c a",
+    "handempty"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable a",
+    "clear c",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a"
+   ],
+   "action": "stack d c",
+   "next_state": [
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "on d c",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable a",
+    "ontable c",
+    "clear c",
+    "holding d",
+    "clear b",
+    "clear a"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "clear b",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "on b c",
+    "holding d",
+    "clear b",
+    "ontable a",
+    "on c a"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "handempty",
+    "ontable a",
+    "on d b",
+    "on c a",
+    "clear d",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "on b c",
+    "holding d",
+    "clear b",
+    "ontable a",
+    "on c a"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "handempty",
+    "ontable a",
+    "on d b",
+    "on c a",
+    "clear d",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "on b c",
+    "holding d",
+    "clear b",
+    "ontable a",
+    "on c a"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "handempty",
+    "ontable a",
+    "on d b",
+    "on c a",
+    "clear d",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "clear d",
+    "clear c",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ],
+   "action": "stack a b",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "on a b",
+    "clear c",
+    "handempty",
+    "clear d",
+    "ontable c",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "ontable c",
+    "clear b",
+    "holding a",
+    "on b d"
+   ],
+   "action": "stack a b",
+   "next_state": [
+    "ontable d",
+    "on a b",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "clear a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b a",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "on b a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "stack b a",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear b",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "holding c",
+    "ontable a",
+    "clear b"
+   ],
+   "action": "stack c b",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "on b a",
+    "clear c",
+    "handempty",
+    "clear d",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "holding c",
+    "ontable a",
+    "clear b"
+   ],
+   "action": "stack c b",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "on b a",
+    "clear c",
+    "handempty",
+    "clear d",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "on d a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "stack d c",
+   "next_state": [
+    "handempty",
+    "on d c",
+    "ontable b",
+    "ontable a",
+    "clear a",
+    "on c b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "stack d c",
+   "next_state": [
+    "handempty",
+    "on d c",
+    "ontable b",
+    "ontable a",
+    "clear a",
+    "on c b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "on d a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "holding c",
+    "ontable a",
+    "on d b",
+    "clear d",
+    "on b a"
+   ],
+   "action": "stack c d",
+   "next_state": [
+    "handempty",
+    "on c d",
+    "ontable a",
+    "on d b",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "holding a",
+    "ontable c",
+    "clear b",
+    "on b c"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "on a b",
+    "ontable c",
+    "holding d",
+    "clear a"
+   ],
+   "action": "stack d a",
+   "next_state": [
+    "ontable b",
+    "on a b",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "on d a"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "on a b",
+    "ontable c",
+    "holding d",
+    "clear a"
+   ],
+   "action": "stack d c",
+   "next_state": [
+    "handempty",
+    "on d c",
+    "ontable c",
+    "ontable b",
+    "clear a",
+    "on a b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "holding a",
+    "ontable b",
+    "on d c",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "stack a b",
+   "next_state": [
+    "ontable b",
+    "on a b",
+    "clear d",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "holding c",
+    "clear b",
+    "clear a",
+    "on b d"
+   ],
+   "action": "stack c a",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "on c a",
+    "clear c",
+    "handempty",
+    "clear b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "holding c",
+    "on b d",
+    "ontable a",
+    "clear b",
+    "clear a"
+   ],
+   "action": "stack c b",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "handempty",
+    "clear a",
+    "on c b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "holding c",
+    "on b d",
+    "ontable a",
+    "clear b",
+    "clear a"
+   ],
+   "action": "stack c a",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "on c a",
+    "clear c",
+    "handempty",
+    "clear b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ],
+   "action": "stack d b",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "on d b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "stack b a",
+   "next_state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ],
+   "action": "stack b d",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "on b d",
+    "clear b",
+    "ontable a",
+    "on d a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "clear c",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ],
+   "action": "stack b c",
+   "next_state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ],
+   "action": "stack b d",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "on b d",
+    "clear b",
+    "ontable a",
+    "on d a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "clear d",
+    "on d c",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "on a d",
+    "ontable b",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "holding a",
+    "ontable b",
+    "on d c",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "stack a d",
+   "next_state": [
+    "on a d",
+    "ontable b",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "holding a",
+    "ontable b",
+    "on d c",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "stack a b",
+   "next_state": [
+    "ontable b",
+    "on a b",
+    "clear d",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "holding a",
+    "ontable b",
+    "on d c",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "stack a b",
+   "next_state": [
+    "ontable b",
+    "on a b",
+    "clear d",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable a",
+    "on c a",
+    "holding b"
+   ],
+   "action": "stack b c",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "on b c",
+    "clear b",
+    "ontable a",
+    "on c a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "clear d",
+    "ontable a",
+    "on c a",
+    "holding b"
+   ],
+   "action": "stack b d",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "on c a",
+    "clear c",
+    "handempty",
+    "clear b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "holding c",
+    "on b d",
+    "ontable a",
+    "clear b",
+    "clear a"
+   ],
+   "action": "stack c a",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "on c a",
+    "clear c",
+    "handempty",
+    "clear b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable a",
+    "on c a",
+    "holding b"
+   ],
+   "action": "stack b d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "clear c",
+    "on b d",
+    "clear b",
+    "ontable a",
+    "on c a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "holding a",
+    "on b d",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "stack a b",
+   "next_state": [
+    "ontable d",
+    "on a b",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "clear a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "on d a"
+   ],
+   "action": "stack c d",
+   "next_state": [
+    "handempty",
+    "ontable b",
+    "clear b",
+    "ontable a",
+    "on c d",
+    "on d a",
+    "clear c"
+   ]
+  }
+ ],
+ "unstack": [
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "on d b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "on d b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b a",
+    "on c d",
+    "ontable d",
+    "clear b",
+    "clear c"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "on c d",
+    "ontable a",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear a",
+    "clear b",
+    "on b c"
+   ],
+   "action": "unstack b c",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "on c d",
+    "ontable a",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "on c d",
+    "clear a",
+    "on a b",
+    "on b c"
+   ],
+   "action": "unstack a b",
+   "next_state": [
+    "ontable d",
+    "on c d",
+    "clear b",
+    "holding a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "clear d",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "on d c",
+    "handempty",
+    "clear a",
+    "on c b"
+   ],
+   "action": "unstack d c",
+   "next_state": [
+    "ontable e",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "clear c",
+    "holding d",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "clear d",
+    "handempty",
+    "on d c",
+    "clear a",
+    "on c b"
+   ],
+   "action": "unstack d c",
+   "next_state": [
+    "ontable e",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "clear c",
+    "holding d",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a c",
+    "on b d",
+    "ontable c",
+    "ontable d",
+    "clear a",
+    "clear b"
+   ],
+   "action": "unstack b d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "on a c",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a"
+   ],
+   "action": "unstack d a",
+   "next_state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "on d b",
+    "clear a",
+    "on a c",
+    "clear d"
+   ],
+   "action": "unstack a c",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a d",
+    "on b a",
+    "ontable c",
+    "on d c",
+    "clear b"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a c",
+    "on b d",
+    "ontable c",
+    "on d a",
+    "clear b"
+   ],
+   "action": "unstack b d",
+   "next_state": [
+    "on d a",
+    "ontable c",
+    "holding b",
+    "on a c",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "on d a",
+    "clear d",
+    "on a c"
+   ],
+   "action": "unstack d a",
+   "next_state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "on d a",
+    "clear d",
+    "on a c"
+   ],
+   "action": "unstack d a",
+   "next_state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a d",
+    "ontable b",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "clear c"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "clear d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ]
+  },
+  {
+   "state": [
+    "on a d",
+    "ontable b",
+    "clear c",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "clear d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a d",
+    "on b c",
+    "ontable c",
+    "ontable d",
+    "clear a",
+    "clear b"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "holding a",
+    "ontable c",
+    "clear b",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a",
+    "on b c"
+   ],
+   "action": "unstack d a",
+   "next_state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a",
+    "on b c"
+   ],
+   "action": "unstack d a",
+   "next_state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b a",
+    "on c d",
+    "ontable d",
+    "clear b",
+    "clear c"
+   ],
+   "action": "unstack c d",
+   "next_state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "holding c",
+    "ontable a",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b a",
+    "clear c",
+    "clear d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "on b a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "clear d",
+    "clear c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "on c b",
+    "ontable d",
+    "clear a",
+    "clear c",
+    "clear d"
+   ],
+   "action": "unstack c b",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "ontable b",
+    "clear c",
+    "handempty",
+    "clear a",
+    "on c b"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a b",
+    "on b c",
+    "ontable c",
+    "ontable d",
+    "clear a",
+    "clear d"
+   ],
+   "action": "unstack a b",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "holding a",
+    "ontable c",
+    "clear b",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "on c d",
+    "on d b",
+    "clear a",
+    "clear c"
+   ],
+   "action": "unstack c d",
+   "next_state": [
+    "clear d",
+    "holding c",
+    "ontable b",
+    "ontable a",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable b",
+    "on c d",
+    "on d b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "unstack a c",
+   "next_state": [
+    "ontable b",
+    "on c d",
+    "on d b",
+    "holding a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a c",
+    "ontable b",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "clear d"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "on a c",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a"
+   ],
+   "action": "unstack d a",
+   "next_state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "on d b",
+    "clear a",
+    "on a c",
+    "clear d"
+   ],
+   "action": "unstack a c",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "clear a",
+    "on d b",
+    "ontable a",
+    "clear d",
+    "on b c"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "on a d",
+    "on d b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "ontable c",
+    "on d b",
+    "clear d",
+    "holding a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a b",
+    "on b c",
+    "ontable c",
+    "ontable d",
+    "clear a",
+    "clear d"
+   ],
+   "action": "unstack a b",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "holding a",
+    "ontable c",
+    "clear b",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "holding a",
+    "ontable c",
+    "clear b",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "unstack b c",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "clear d",
+    "clear c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a d",
+    "on b c",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "ontable c",
+    "on d b",
+    "clear d",
+    "holding a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on b c",
+    "ontable c",
+    "on a d",
+    "on d b",
+    "clear a"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "ontable c",
+    "on d b",
+    "clear d",
+    "holding a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on b c",
+    "ontable c",
+    "on a d",
+    "on d b",
+    "clear a"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "ontable c",
+    "on d b",
+    "clear d",
+    "holding a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on b c",
+    "ontable c",
+    "on a d",
+    "on d b",
+    "clear a"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "ontable c",
+    "on d b",
+    "clear d",
+    "holding a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b c",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "clear d"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a",
+    "on b c"
+   ],
+   "action": "unstack b c",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "on b d",
+    "clear b",
+    "ontable a",
+    "on d a",
+    "clear c"
+   ],
+   "action": "unstack b d",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable a",
+    "on c b",
+    "clear d",
+    "on b a",
+    "clear c"
+   ],
+   "action": "unstack c b",
+   "next_state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "holding c",
+    "ontable a",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "clear b",
+    "ontable a",
+    "on c d",
+    "on b a",
+    "clear c"
+   ],
+   "action": "unstack c d",
+   "next_state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "holding c",
+    "ontable a",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "clear b",
+    "ontable a",
+    "on c d",
+    "on b a",
+    "clear c"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "on c d",
+    "ontable a",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a b",
+    "ontable b",
+    "on c d",
+    "ontable d",
+    "clear a",
+    "clear c"
+   ],
+   "action": "unstack a b",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "on c d",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable b",
+    "on c d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "unstack a c",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "on c d",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "on c d",
+    "handempty",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "unstack a c",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "on c d",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "clear c",
+    "ontable a",
+    "on d b",
+    "on b a",
+    "clear d"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "on b a",
+    "clear c",
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "on b a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "ontable c",
+    "on d b"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "on b a",
+    "clear c",
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "handempty",
+    "ontable b",
+    "clear b",
+    "ontable a",
+    "on c a",
+    "clear d"
+   ],
+   "action": "unstack d c",
+   "next_state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "on c a",
+    "holding d",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on d c",
+    "ontable b",
+    "ontable a",
+    "clear b",
+    "on c a",
+    "clear d"
+   ],
+   "action": "unstack d c",
+   "next_state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "on c a",
+    "holding d",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear e",
+    "on e b",
+    "handempty",
+    "ontable c",
+    "clear a",
+    "on a c",
+    "on b d"
+   ],
+   "action": "unstack a c",
+   "next_state": [
+    "ontable d",
+    "clear e",
+    "on e b",
+    "clear c",
+    "ontable c",
+    "holding a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "on b d",
+    "on e b",
+    "clear e",
+    "ontable a",
+    "on c a",
+    "handempty"
+   ],
+   "action": "unstack e b",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "holding e",
+    "on c a",
+    "clear c",
+    "clear b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b d",
+    "ontable c",
+    "ontable d",
+    "clear a",
+    "clear b",
+    "clear c"
+   ],
+   "action": "unstack b d",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "unstack d c",
+   "next_state": [
+    "ontable b",
+    "ontable a",
+    "ontable c",
+    "clear c",
+    "holding d",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on d b",
+    "on c a",
+    "clear d",
+    "on b c"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "on b c",
+    "holding d",
+    "clear b",
+    "ontable a",
+    "on c a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on d b",
+    "on c a",
+    "clear d",
+    "on b c"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "on b c",
+    "holding d",
+    "clear b",
+    "ontable a",
+    "on c a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a c",
+    "on b d",
+    "ontable c",
+    "ontable d",
+    "clear a",
+    "clear b"
+   ],
+   "action": "unstack b d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "unstack a c",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "clear d",
+    "clear c",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "clear d",
+    "ontable b",
+    "on a b",
+    "handempty",
+    "ontable c",
+    "clear a"
+   ],
+   "action": "unstack a b",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear c",
+    "clear a",
+    "on a b",
+    "on b d"
+   ],
+   "action": "unstack a b",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "holding a",
+    "on b d",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "on b d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "unstack b d",
+   "next_state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b a",
+    "on c d",
+    "ontable d",
+    "clear b",
+    "clear c"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "on c d",
+    "ontable a",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear b",
+    "on b a",
+    "clear c"
+   ],
+   "action": "unstack c d",
+   "next_state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "holding c",
+    "ontable a",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "on b a",
+    "clear c",
+    "handempty",
+    "clear d",
+    "on c b"
+   ],
+   "action": "unstack c b",
+   "next_state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "holding c",
+    "ontable a",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "ontable b",
+    "on c b",
+    "on d c",
+    "clear a",
+    "clear d"
+   ],
+   "action": "unstack d c",
+   "next_state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "handempty",
+    "clear c",
+    "on d a",
+    "on c b"
+   ],
+   "action": "unstack d a",
+   "next_state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on d c",
+    "ontable b",
+    "ontable a",
+    "clear a",
+    "on c b",
+    "clear d"
+   ],
+   "action": "unstack d c",
+   "next_state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on d c",
+    "ontable b",
+    "ontable a",
+    "clear a",
+    "on c b",
+    "clear d"
+   ],
+   "action": "unstack d c",
+   "next_state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on c d",
+    "ontable a",
+    "on d b",
+    "on b a",
+    "clear c"
+   ],
+   "action": "unstack c d",
+   "next_state": [
+    "holding c",
+    "ontable a",
+    "on d b",
+    "clear d",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "clear c",
+    "ontable a",
+    "on d b",
+    "on b a",
+    "clear d"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "on b a",
+    "clear c",
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a b",
+    "on b c",
+    "ontable c",
+    "ontable d",
+    "clear a",
+    "clear d"
+   ],
+   "action": "unstack a b",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "holding a",
+    "ontable c",
+    "clear b",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ],
+   "action": "unstack b c",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "clear c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on a b",
+    "ontable b",
+    "ontable c",
+    "on d a",
+    "clear c",
+    "clear d"
+   ],
+   "action": "unstack d a",
+   "next_state": [
+    "clear c",
+    "ontable b",
+    "on a b",
+    "ontable c",
+    "holding d",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on a b",
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "clear c",
+    "on d a",
+    "clear d"
+   ],
+   "action": "unstack d a",
+   "next_state": [
+    "clear c",
+    "ontable b",
+    "on a b",
+    "ontable c",
+    "holding d",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on d c",
+    "ontable c",
+    "ontable b",
+    "clear a",
+    "on a b",
+    "clear d"
+   ],
+   "action": "unstack a b",
+   "next_state": [
+    "clear d",
+    "holding a",
+    "ontable b",
+    "on d c",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "on c a",
+    "clear c",
+    "handempty",
+    "clear b",
+    "on b d"
+   ],
+   "action": "unstack c a",
+   "next_state": [
+    "ontable d",
+    "holding c",
+    "on b d",
+    "ontable a",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "handempty",
+    "clear a",
+    "on c b",
+    "on b d"
+   ],
+   "action": "unstack c b",
+   "next_state": [
+    "ontable d",
+    "holding c",
+    "on b d",
+    "ontable a",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "on c a",
+    "clear c",
+    "handempty",
+    "clear b",
+    "on b d"
+   ],
+   "action": "unstack b d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable a",
+    "on c a",
+    "holding b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "on d b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ],
+   "action": "unstack d b",
+   "next_state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ],
+   "action": "unstack b a",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b c",
+    "ontable c",
+    "on d a",
+    "clear b",
+    "clear d"
+   ],
+   "action": "unstack b c",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable c",
+    "clear c",
+    "clear b",
+    "ontable a",
+    "on d a",
+    "on b d"
+   ],
+   "action": "unstack b d",
+   "next_state": [
+    "clear d",
+    "clear c",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "on d a",
+    "on b c"
+   ],
+   "action": "unstack b c",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ]
+  },
+  {
+   "state": [
+    "on a d",
+    "ontable b",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "clear d",
+    "holding a",
+    "ontable b",
+    "on d c",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "on a d",
+    "ontable b",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "unstack a d",
+   "next_state": [
+    "clear d",
+    "holding a",
+    "ontable b",
+    "on d c",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "on a b",
+    "clear d",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear a"
+   ],
+   "action": "unstack a b",
+   "next_state": [
+    "clear d",
+    "holding a",
+    "ontable b",
+    "on d c",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable a",
+    "on b d",
+    "on c a",
+    "ontable d",
+    "clear b",
+    "clear c"
+   ],
+   "action": "unstack b d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable a",
+    "on c a",
+    "holding b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "on b c",
+    "clear b",
+    "ontable a",
+    "on c a",
+    "clear d"
+   ],
+   "action": "unstack b c",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "clear d",
+    "ontable a",
+    "on c a",
+    "holding b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "on c a",
+    "clear c",
+    "handempty",
+    "clear b",
+    "on b d"
+   ],
+   "action": "unstack c a",
+   "next_state": [
+    "ontable d",
+    "holding c",
+    "on b d",
+    "ontable a",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "on c a",
+    "clear c",
+    "handempty",
+    "clear b",
+    "on b d"
+   ],
+   "action": "unstack b d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable a",
+    "on c a",
+    "holding b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear c",
+    "clear a",
+    "on a b",
+    "on b d"
+   ],
+   "action": "unstack a b",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "holding a",
+    "on b d",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "handempty",
+    "on c d",
+    "ontable a",
+    "clear b",
+    "on d a",
+    "on b c"
+   ],
+   "action": "unstack b c",
+   "next_state": [
+    "clear c",
+    "holding b",
+    "on c d",
+    "ontable a",
+    "on d a"
+   ]
+  }
+ ],
+ "put-down": [
+  {
+   "state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on c d",
+    "clear b",
+    "holding a",
+    "on b c"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "clear a",
+    "on c d",
+    "clear b",
+    "ontable a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable a",
+    "holding e",
+    "clear d",
+    "on d c",
+    "clear a",
+    "on c b"
+   ],
+   "action": "put-down e",
+   "next_state": [
+    "ontable e",
+    "clear d",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "on d c",
+    "handempty",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "ontable b",
+    "clear e",
+    "clear d",
+    "on d c",
+    "on c b",
+    "holding a"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable e",
+    "clear d",
+    "ontable b",
+    "clear e",
+    "ontable a",
+    "on d c",
+    "handempty",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d a",
+    "ontable c",
+    "holding b",
+    "on a c",
+    "clear d"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "on d a",
+    "clear d",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "on d a",
+    "ontable c",
+    "holding b",
+    "on a c",
+    "clear d"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "on d a",
+    "clear d",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "on a d",
+    "holding c",
+    "ontable b",
+    "on d b",
+    "clear a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "on a d",
+    "ontable b",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "holding a",
+    "ontable c",
+    "clear b",
+    "on b c"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "holding c",
+    "ontable a",
+    "clear b"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "ontable d",
+    "on b a",
+    "clear c",
+    "clear d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "clear d",
+    "clear c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "holding a",
+    "ontable c",
+    "clear b",
+    "on b c"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "on b c",
+    "ontable c",
+    "on d b",
+    "holding a",
+    "clear d"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "clear a",
+    "on d b",
+    "ontable a",
+    "clear d",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "on c d",
+    "on d b",
+    "holding a",
+    "clear c"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "handempty",
+    "ontable b",
+    "on c d",
+    "on d b",
+    "ontable a",
+    "clear a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on b c",
+    "ontable c",
+    "on d b",
+    "holding a",
+    "clear d"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "clear a",
+    "on d b",
+    "ontable a",
+    "clear d",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "holding a",
+    "ontable c",
+    "clear b",
+    "on b c"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "holding d",
+    "ontable a",
+    "on c b",
+    "on b a",
+    "clear c"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable a",
+    "on c b",
+    "clear d",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "holding d",
+    "ontable a",
+    "on c b",
+    "on b a"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable a",
+    "on c b",
+    "clear d",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "holding d",
+    "ontable a",
+    "on c b",
+    "on b a"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable a",
+    "on c b",
+    "clear d",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "clear d",
+    "clear c",
+    "on d a",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "holding d",
+    "ontable a",
+    "on c b",
+    "on b a",
+    "clear c"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable a",
+    "on c b",
+    "clear d",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "holding b",
+    "on c d",
+    "clear a",
+    "on a c"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable b",
+    "on c d",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "holding c",
+    "ontable a",
+    "on d b",
+    "on b a",
+    "clear d"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "clear c",
+    "ontable a",
+    "on d b",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "on b a",
+    "clear c",
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "clear c",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "holding b",
+    "ontable a",
+    "on c a",
+    "clear d"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "ontable b",
+    "clear b",
+    "ontable a",
+    "on c a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "on c a",
+    "holding d",
+    "clear b"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "on c a",
+    "handempty",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable a",
+    "on c a",
+    "clear c",
+    "holding d",
+    "clear b"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "on c a",
+    "handempty",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear e",
+    "on e b",
+    "clear c",
+    "ontable c",
+    "holding a",
+    "on b d"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "on b d",
+    "on e b",
+    "clear e",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "holding e",
+    "on c a",
+    "clear c",
+    "clear b",
+    "on b d"
+   ],
+   "action": "put-down e",
+   "next_state": [
+    "ontable d",
+    "ontable e",
+    "clear c",
+    "on b d",
+    "clear e",
+    "ontable a",
+    "on c a",
+    "handempty",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "clear d",
+    "on d c",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on b c",
+    "holding d",
+    "clear b",
+    "ontable a",
+    "on c a"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "clear b",
+    "ontable a",
+    "on c a",
+    "clear d",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "on a b",
+    "clear d",
+    "holding c",
+    "clear a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "clear d",
+    "ontable b",
+    "on a b",
+    "handempty",
+    "ontable c",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b d",
+    "holding c",
+    "clear a",
+    "on a b"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear c",
+    "clear a",
+    "on a b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "holding a",
+    "on b d",
+    "ontable c",
+    "clear b"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "on b d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear c",
+    "on c d",
+    "ontable a",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "ontable b",
+    "on c d",
+    "ontable a",
+    "handempty",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "holding c",
+    "ontable a",
+    "on d b",
+    "clear d",
+    "on b a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "clear c",
+    "ontable a",
+    "on d b",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "on b a",
+    "clear c",
+    "ontable a",
+    "ontable c",
+    "holding d",
+    "clear b"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "ontable d",
+    "on b a",
+    "clear d",
+    "clear c",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable a",
+    "on b a",
+    "clear d",
+    "holding c",
+    "clear b"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "ontable d",
+    "on b a",
+    "clear c",
+    "clear d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "clear c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "clear c",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "clear c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "clear c",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "ontable b",
+    "holding c",
+    "clear b",
+    "clear a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "ontable d",
+    "on a d",
+    "clear c",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d a",
+    "holding c",
+    "ontable b",
+    "on a b",
+    "clear d"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "on a b",
+    "handempty",
+    "ontable c",
+    "ontable b",
+    "clear c",
+    "on d a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable a",
+    "on c a",
+    "holding b"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "on c a",
+    "handempty",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable c",
+    "holding d",
+    "clear b",
+    "on a c",
+    "on b a"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear b",
+    "on a c",
+    "on b a",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "holding c",
+    "clear b",
+    "ontable a",
+    "on d a",
+    "on b d"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "clear c",
+    "clear b",
+    "ontable a",
+    "on d a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b d",
+    "holding c",
+    "clear a",
+    "on a b"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear c",
+    "clear a",
+    "on a b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b d",
+    "holding c",
+    "clear a",
+    "on a b"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear c",
+    "clear a",
+    "on a b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on b d",
+    "holding c",
+    "clear a",
+    "on a b"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable c",
+    "clear c",
+    "clear a",
+    "on a b",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "on d b",
+    "clear a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "on d b",
+    "holding a"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "ontable b",
+    "on c b",
+    "holding a",
+    "clear d"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "ontable b",
+    "ontable a",
+    "clear a",
+    "on c b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "ontable b",
+    "on c b",
+    "holding a",
+    "clear d"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "ontable b",
+    "ontable a",
+    "clear a",
+    "on c b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "on a d",
+    "holding c",
+    "ontable b",
+    "on d b",
+    "clear a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "on a d",
+    "ontable b",
+    "ontable c",
+    "on d b",
+    "clear a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "clear a",
+    "on a c"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "ontable b",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a",
+    "on a c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "holding c",
+    "ontable b",
+    "ontable a",
+    "on d b",
+    "clear a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "holding c",
+    "clear b",
+    "on b a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on a d",
+    "holding c",
+    "clear b",
+    "on b a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "on a d",
+    "ontable c",
+    "clear b",
+    "on b a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "holding a",
+    "on b d",
+    "ontable c",
+    "on d e",
+    "clear b",
+    "on e c"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "on b d",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d e",
+    "clear b",
+    "clear a",
+    "on e c"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "on e c",
+    "clear d",
+    "ontable c",
+    "holding b",
+    "on d e",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d e",
+    "clear b",
+    "clear a",
+    "on e c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "clear d",
+    "holding c",
+    "ontable b",
+    "on a b",
+    "clear a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "clear d",
+    "ontable b",
+    "on a b",
+    "handempty",
+    "ontable c",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "clear d",
+    "clear c",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "on b e",
+    "clear c",
+    "ontable c",
+    "clear d",
+    "on d b",
+    "holding a"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable e",
+    "clear c",
+    "clear d",
+    "ontable a",
+    "on b e",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "clear d",
+    "on b e",
+    "ontable c",
+    "clear c",
+    "on d b",
+    "holding a"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable e",
+    "clear c",
+    "clear d",
+    "ontable a",
+    "on b e",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable e",
+    "clear c",
+    "clear d",
+    "on b e",
+    "ontable c",
+    "on d b",
+    "holding a"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable e",
+    "clear d",
+    "clear c",
+    "ontable a",
+    "on b e",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "ontable c",
+    "clear b",
+    "holding a",
+    "on b d"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "ontable a",
+    "clear a",
+    "on b d"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "holding d",
+    "clear a",
+    "on c b",
+    "on a c"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable b",
+    "clear a",
+    "on a c",
+    "on c b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "on b c",
+    "holding d",
+    "clear b",
+    "ontable a",
+    "on c a"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "clear b",
+    "ontable a",
+    "on c a",
+    "clear d",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "holding d",
+    "clear a",
+    "on a c",
+    "on c b"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "handempty",
+    "ontable d",
+    "ontable b",
+    "clear a",
+    "on a c",
+    "on c b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "ontable a",
+    "clear d",
+    "on d c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "ontable a",
+    "on d c",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "on d c",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "on c d",
+    "ontable a",
+    "clear c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "ontable d",
+    "clear c",
+    "ontable b",
+    "on c d",
+    "ontable a",
+    "handempty",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "ontable b",
+    "on c b",
+    "holding a",
+    "clear d"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "ontable b",
+    "ontable a",
+    "clear a",
+    "on c b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "ontable b",
+    "on c b",
+    "holding a",
+    "clear d"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "ontable b",
+    "ontable a",
+    "clear a",
+    "on c b",
+    "clear d"
+   ]
+  },
+  {
+   "state": [
+    "on b c",
+    "ontable c",
+    "on d b",
+    "holding a",
+    "clear d"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "handempty",
+    "ontable c",
+    "clear a",
+    "on d b",
+    "ontable a",
+    "clear d",
+    "on b c"
+   ]
+  },
+  {
+   "state": [
+    "ontable d",
+    "ontable b",
+    "clear c",
+    "clear d",
+    "ontable c",
+    "clear b",
+    "holding a"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "holding b",
+    "ontable a",
+    "on c d",
+    "on d a",
+    "clear c"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "handempty",
+    "ontable b",
+    "on c d",
+    "ontable a",
+    "clear b",
+    "on d a",
+    "clear c"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "clear c",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "clear d",
+    "holding a",
+    "ontable b",
+    "ontable c",
+    "on d b"
+   ],
+   "action": "put-down a",
+   "next_state": [
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "on d b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "holding d",
+    "clear a",
+    "on c b"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "ontable d",
+    "clear d",
+    "clear c",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "clear a",
+    "on c b"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable e",
+    "on a e",
+    "clear c",
+    "ontable c",
+    "holding d",
+    "clear b",
+    "clear a"
+   ],
+   "action": "put-down d",
+   "next_state": [
+    "ontable d",
+    "ontable b",
+    "ontable e",
+    "on a e",
+    "clear c",
+    "clear d",
+    "handempty",
+    "ontable c",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "clear c",
+    "on d a",
+    "ontable a",
+    "ontable c",
+    "holding b"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "clear d",
+    "holding c",
+    "on d a",
+    "ontable b",
+    "ontable a",
+    "clear b"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "ontable b",
+    "ontable a",
+    "clear d",
+    "holding c",
+    "clear b",
+    "on d a"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "clear c",
+    "clear d",
+    "on d a",
+    "ontable b",
+    "ontable a",
+    "handempty",
+    "ontable c",
+    "clear b"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "on d c",
+    "on a d",
+    "ontable c",
+    "holding b",
+    "clear a"
+   ],
+   "action": "put-down b",
+   "next_state": [
+    "on d c",
+    "handempty",
+    "on a d",
+    "ontable c",
+    "ontable b",
+    "clear b",
+    "clear a"
+   ]
+  },
+  {
+   "state": [
+    "holding c",
+    "on d a",
+    "ontable b",
+    "clear e",
+    "on a b",
+    "on e d"
+   ],
+   "action": "put-down c",
+   "next_state": [
+    "clear c",
+    "on d a",
+    "ontable b",
+    "clear e",
+    "on a b",
+    "handempty",
+    "ontable c",
+    "on e d"
+   ]
+  }
+ ]
+}
