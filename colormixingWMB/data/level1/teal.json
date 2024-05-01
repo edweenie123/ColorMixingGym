@@ -1,0 +1,13 @@
+{
+  "state": [
+    "contains 1 255 0 0 100",
+    "contains 2 0 255 0 100",
+    "contains 3 0 0 255 100",
+    "contains 4 255 255 255 100",
+    "contains 5 0 0 0 100",
+    "contains 6 0 0 0 0"
+  ],
+  "goal_state": [
+    "contains 2 21 144 164 128"
+  ]
+}
