@@ -1,4 +1,4 @@
-# Color mixing gym
+# WorldModelBuilder
 
 Create conda virtual environment and install required packages with
 
